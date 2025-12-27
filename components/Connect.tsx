@@ -74,6 +74,15 @@ export default function Connect() {
     <footer id="connect" className="py-12 md:py-16 bg-slate-900 text-white">
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center">
+          {/* Logo */}
+          <div className="mb-8">
+            <img
+              src="/images/logos/kn-logo-1-1.svg"
+              alt="Karl Nguyen Logo"
+              className="w-20 h-20 md:w-24 md:h-24 mx-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Let&apos;s{" "}
