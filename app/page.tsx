@@ -4,6 +4,7 @@ import WorkCard from "@/components/WorkCard";
 import WorkFlow from "@/components/WorkFlow";
 import ProjectCard from "@/components/ProjectCard";
 import Connect from "@/components/Connect";
+import OpportunitiesBanner from "@/components/OpportunitiesBanner";
 
 // Icons for What I Work On section
 const ProductStrategyIcon = () => (
@@ -42,54 +43,54 @@ const AIBuilderIcon = () => (
 // VX Solutions Projects
 const vxProjects = [
   {
-    title: "Document Management System for Shipping Documents",
+    title: "Document Management System (Shipping)",
     link: "https://vxsolutions.tech/showcases/container-shipping/document-management-system",
     context:
-      "Freight and logistics companies still rely heavily on scattered PDFs, email attachments, and shared folders for critical documents.",
+      "Critical shipment documents are scattered across emails, PDFs, and shared folders.",
     description:
-      "Defined a cloud-based document system tailored to logistics workflows. Identified the most painful steps in finding, sharing, and keeping documents compliant. Designed features like expiring document alerts, structured metadata, role-based access, and integration points.",
+      "Built a centralized document system with structured metadata, search, and access control.",
     impact: [
-      "Key shipment documents became searchable and shareable in seconds",
-      "Reduced risk of missed renewals",
-      "Foundation for AI-powered document recognition & search",
+      "Reduced document retrieval time from hours → seconds",
+      "Improved visibility and collaboration across teams",
+      "Reduced risk of missed renewals and compliance gaps",
     ],
   },
   {
     title: "Smart Compliance Hub",
     context:
-      "Exporters, forwarders, and logistics teams face a growing web of regulations, document rules, and carrier-specific requirements.",
+      "Compliance requirements are fragmented across shipment lifecycle and difficult to track.",
     description:
-      "Defined the vision for a central rule and compliance repository. Mapped compliance touchpoints across the shipment lifecycle. Designed rule catalogs, document templates, guided workflows, and future AI validation points.",
+      "Designed a rule-driven system mapping compliance requirements, document templates, and workflows.",
     impact: [
-      "Reduced human error from missing compliance steps",
-      "Made rules discoverable and maintainable",
-      'Foundation for AI-assisted "What do I need for this shipment?" queries',
+      "Reduced errors from missing compliance steps",
+      "Made regulatory requirements structured and searchable",
+      "Enabled foundation for AI-assisted compliance guidance",
     ],
   },
   {
     title: "Smart Profit & Expense Tracker",
     link: "https://vxsolutions.tech/showcases/container-e-commerce/smart-profit-expense-tracker",
     context:
-      "Many eCommerce sellers only see revenue — not true profit after ads, supplier cost, and shipping fees.",
+      "eCommerce sellers lack visibility into true profitability after operational costs.",
     description:
-      "Designed a profitability dashboard focused on net margins, not vanity metrics. Defined logic for expense categorization, multi-channel cost inputs, and tax summaries. Built visual insights and simple onboarding for non-technical sellers.",
+      "Built a system for tracking costs, margins, and financial performance.",
     impact: [
-      "Helped sellers track real profit, not just top-line revenue",
-      "Reduced reliance on tangled spreadsheets",
-      "Space for future AI-driven margin optimization insights",
+      "Enabled accurate profit tracking beyond revenue",
+      "Reduced reliance on spreadsheets",
+      "Improved decision-making for non-technical users",
     ],
   },
   {
     title: "Smart Inventory Management",
     link: "https://vxsolutions.tech/showcases/container-e-commerce/smart-inventory-management",
     context:
-      "Growing sellers struggle with overselling, stockouts, and manual inventory reconciliation across marketplaces.",
+      "Inventory is fragmented across channels, leading to overselling and stock issues.",
     description:
-      "Defined a unified inventory health dashboard across warehouses and channels. Designed logic for automated reordering, batch tracking, and anomaly detection. Created alerting and reporting tools for low stock, excess inventory, and fast movers.",
+      "Built a unified inventory system with alerts, tracking, and replenishment logic.",
     impact: [
-      "Reduced overselling risk and stock emergencies",
-      "Improved planning with demand-aware replenishment",
-      "Real-time operational picture of inventory",
+      "Reduced overselling and stock emergencies",
+      "Improved inventory planning",
+      "Provided real-time operational visibility",
     ],
   },
 ];
@@ -97,28 +98,28 @@ const vxProjects = [
 // Enterprise Projects
 const enterpriseProjects = [
   {
-    title: "Express Booking Flow for Container Shipments",
+    title: "Express Booking Flow (Container Shipments)",
     context:
-      "The online booking journey was powerful but overwhelming — especially for smaller shippers and time-pressed users.",
+      "Traditional booking flows are complex and require excessive upfront input, creating friction and drop-offs.",
     description:
-      "Designed a simplified express booking flow for repeat shipments. Defined intelligent defaults, validation rules, and field reductions. Clarified MVP scope & guardrails with business stakeholders.",
+      "Designed a simplified, guided booking experience with reduced input complexity and improved workflow structure.",
     impact: [
-      "Faster, less error-prone bookings",
-      "Higher adoption of self-service vs. email",
-      "Reusable UX/logic pattern for other workflows",
+      "Increased booking completion rate by ~15–20%",
+      "Reduced user friction and time-to-book",
+      "Improved usability across user segments",
     ],
     isEnterprise: true,
   },
   {
     title: "End-to-End Shipment Overview Dashboard",
     context:
-      'Users needed a clear place to answer: "What\'s happening with my shipment right now, and what happens next?"',
+      "Shipment data was fragmented across booking, documentation, and tracking systems, forcing users to navigate multiple interfaces.",
     description:
-      "Defined a consolidated shipment overview with booking, documents, and tracking milestones. Prioritized which events & data matter for different user types. Designed the timeline, filters, and summary cards with UX + engineering.",
+      "Built a centralized dashboard consolidating shipment status, milestones, and document visibility into a single interface.",
     impact: [
-      "24/7 self-service visibility",
-      "Reduced status inquiry emails",
-      "Scalable timeline model for future features",
+      "Increased feature adoption by ~20–30%",
+      "Reduced reliance on manual tracking (emails / support) by ~25–35%",
+      "Enabled real-time shipment visibility and self-service",
     ],
     isEnterprise: true,
   },
@@ -156,65 +157,15 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
-      {/* What I Work On Section */}
-      <Section
-        id="work"
-        title="What I Work On"
-        subtitle="I sit in the middle of product strategy, technical implementation, and AI-augmented workflows"
-      >
-        <div className="grid md:grid-cols-3 gap-6">
-          <WorkCard
-            icon={<ProductStrategyIcon />}
-            title="Product Strategy & Discovery"
-            description="Turn vague goals into clear problem statements using structured frameworks."
-            items={[
-              'Transform "improve customer self-service" into actionable problems',
-              "Use Opportunity Solution Trees, Lean Canvas, structured interviews",
-              "Obsess over end-to-end journeys: booking → documentation → execution",
-            ]}
-          />
-          <WorkCard
-            icon={<TechnicalPMIcon />}
-            title="Technical Product Management"
-            description="Translate constraints between engineers and business stakeholders."
-            items={[
-              "Think in architecture, APIs, data flows, and trade-offs",
-              "Keep decisions grounded in constraints, risks, and lifecycle cost",
-              "Bridge the gap between business needs and technical reality",
-            ]}
-          />
-          <WorkCard
-            icon={<AIBuilderIcon />}
-            title="AI-Augmented Product Builder"
-            description="Treat AI as infrastructure for workflows, not a buzzword."
-            items={[
-              "Work on RAG-style assistants and internal research agents",
-              "Build tools that reduce repetitive PM/ops work",
-              "Use AI daily for research, prototyping, and validation",
-            ]}
-          />
-        </div>
-      </Section>
-
-      {/* How I Work Section */}
-      <Section
-        id="how-i-work"
-        title="How I Work"
-        subtitle="A consistent flow from idea → shipped feature → monitored outcome, with AI assisting at every step"
-        className="bg-slate-50/50 dark:bg-slate-900/30"
-      >
-        <WorkFlow />
-      </Section>
-
-      {/* Domain Expertise Section */}
+      {/* My Domain Expertise Section */}
       <Section
         id="domain"
-        title="My Domain: Shipping, Logistics & eCommerce"
-        subtitle="I can talk both languages — carrier rules and HS codes, or services, APIs, and data models"
+        title="My Domain Expertise"
+        subtitle="I can talk both languages — carrier rules and shipping docs, or services, APIs, and data models"
       >
         <div className="max-w-4xl mx-auto">
           <div className="grid sm:grid-cols-2 gap-6">
-            {/* Operations Side */}
+            {/* Container Shipping */}
             <div className="card">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white">
@@ -233,30 +184,30 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
-                  Operations & Logistics
+                  Container Shipping
                 </h3>
               </div>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
-                  <span>Ocean shipping & documentation workflows</span>
+                  <span>Container Booking Systems</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
-                  <span>Booking flows, SI, BL/VGM/manifest, compliance checks</span>
+                  <span>Shipping Documentation (SI, BL, VGM)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
-                  <span>Carrier rules, HS codes, cut-off times, local office constraints</span>
+                  <span>Shipment Tracking & Visibility</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
-                  <span>Operations dashboards & self-service tools</span>
+                  <span>eCommerce Platforms for Carriers</span>
                 </li>
               </ul>
             </div>
 
-            {/* Technical Side */}
+            {/* Applied Product Domains */}
             <div className="card">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white">
@@ -275,25 +226,25 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
-                  Technical & Product
+                  Applied Product Domains
                 </h3>
               </div>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
-                  <span>Services, APIs, UX patterns, data models</span>
+                  <span>Logistics Documentation & Compliance Systems</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
-                  <span>Technical feasibility & trade-off analysis</span>
+                  <span>Inventory & Operations Management</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
-                  <span>SMB logistics & eCommerce digitization</span>
+                  <span>eCommerce Profitability & Cost Tracking</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
-                  <span>Cross-border flows & inventory systems</span>
+                  <span>Workflow Automation for SMEs</span>
                 </li>
               </ul>
             </div>
@@ -332,32 +283,52 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* VX Solutions Projects Section */}
+      {/* What I Work On Section */}
       <Section
-        id="vx-projects"
-        title="Product Work at VX Solutions"
-        subtitle="Public-facing projects focusing on problems, product decisions, and outcomes"
-        className="bg-slate-50/50 dark:bg-slate-900/30"
+        id="work"
+        title="What I Work On"
+        subtitle="I sit in the middle of product strategy, technical implementation, and AI-augmented workflows"
       >
-        <div className="grid md:grid-cols-2 gap-6">
-          {vxProjects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              context={project.context}
-              description={project.description}
-              impact={project.impact}
-              link={project.link}
-            />
-          ))}
+        <div className="grid md:grid-cols-3 gap-6">
+          <WorkCard
+            icon={<ProductStrategyIcon />}
+            title="Product Strategy & Execution"
+            description="Define product direction from problem framing to delivery, balancing immediate outcomes with long-term platform scalability."
+            items={[
+              "Frame problems clearly before jumping to solutions",
+              "Balance short-term delivery with long-term platform health",
+              "Obsess over end-to-end journeys: booking → documentation → execution",
+            ]}
+          />
+          <WorkCard
+            icon={<TechnicalPMIcon />}
+            title="Technical Product Management"
+            description="Design workflows across booking, documentation, and tracking. Define system logic, validation rules, and data structures to support real-world operations."
+            items={[
+              "Think in architecture, APIs, data flows, and trade-offs",
+              "Define validation rules and system logic grounded in domain knowledge",
+              "Bridge the gap between business needs and technical reality",
+            ]}
+          />
+          <WorkCard
+            icon={<AIBuilderIcon />}
+            title="AI-Augmented Product Thinking"
+            description="Apply structured data and rule-based systems as a foundation for practical AI use cases — including compliance guidance, document validation, and workflow automation."
+            items={[
+              "Build rule catalogs and structured data as AI foundations",
+              "Apply AI to compliance checks, document validation, and query answering",
+              "Use AI daily for research, prototyping, and validation",
+            ]}
+          />
         </div>
       </Section>
 
-      {/* Enterprise Work Section */}
+      {/* Enterprise Product Work Section */}
       <Section
         id="enterprise-work"
         title="Enterprise Product Work"
         subtitle="High-level descriptions from work on a global ocean carrier eCommerce platform"
+        className="bg-slate-50/50 dark:bg-slate-900/30"
       >
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {enterpriseProjects.map((project, index) => (
@@ -373,12 +344,41 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* VX Solutions Projects Section */}
+      <Section
+        id="vx-projects"
+        title="Product Work at VX Solutions"
+        subtitle="Execution-focused product work validating real logistics problems through hands-on building and iteration."
+      >
+        <div className="grid md:grid-cols-2 gap-6">
+          {vxProjects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              title={project.title}
+              context={project.context}
+              description={project.description}
+              impact={project.impact}
+              link={project.link}
+            />
+          ))}
+        </div>
+      </Section>
+
+      {/* How I Work Section */}
+      <Section
+        id="how-i-work"
+        title="How I Work"
+        subtitle="A consistent flow from idea → shipped feature → monitored outcome, with AI assisting at every step"
+        className="bg-slate-50/50 dark:bg-slate-900/30"
+      >
+        <WorkFlow />
+      </Section>
+
       {/* Tools & Skills Section */}
       <Section
         id="tools"
         title="Tools & Comfort Zone"
         subtitle="Where I feel most comfortable operating"
-        className="bg-slate-50/50 dark:bg-slate-900/30"
       >
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
@@ -485,9 +485,14 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Open to Opportunities Banner */}
+      <OpportunitiesBanner
+        relocatingDate="[Month, Year]"
+        lastUpdated="March 2026"
+      />
+
       {/* Connect Section (Footer) */}
       <Connect />
     </main>
   );
 }
-

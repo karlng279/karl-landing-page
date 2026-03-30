@@ -16,31 +16,33 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Karl Nguyen | Technical Product Manager",
+  title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
   description:
-    "Technical Product Manager turning messy logistics workflows into usable software. Specializing in shipping, logistics, AI, and hands-on delivery.",
+    "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Delivering measurable impact across global logistics platforms.",
   keywords: [
     "Product Manager",
     "Technical Product Manager",
-    "Logistics",
-    "Shipping",
-    "AI",
+    "Container Shipping",
+    "Logistics Systems",
+    "Shipment Visibility",
+    "SI BL",
+    "Shipping Documentation",
+    "Supply Chain",
     "eCommerce",
-    "Software",
   ],
   authors: [{ name: "Karl Nguyen" }],
   openGraph: {
-    title: "Karl Nguyen | Technical Product Manager",
+    title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
     description:
-      "Technical Product Manager turning messy logistics workflows into usable software.",
+      "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karl Nguyen | Technical Product Manager",
+    title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
     description:
-      "Technical Product Manager turning messy logistics workflows into usable software.",
+      "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
   },
   icons: {
     icon: [

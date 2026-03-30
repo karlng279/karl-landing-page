@@ -74,20 +74,20 @@ export default function ProjectCard({
         )}
       </div>
 
-      {/* Context */}
+      {/* Problem */}
       <div className="mb-4">
         <span className="text-xs font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
-          Context
+          Problem
         </span>
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
           {context}
         </p>
       </div>
 
-      {/* Description */}
+      {/* Solution */}
       <div className="mb-4">
         <span className="text-xs font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
-          What I Worked On
+          Solution
         </span>
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
           {description}

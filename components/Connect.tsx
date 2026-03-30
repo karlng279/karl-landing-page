@@ -91,10 +91,9 @@ export default function Connect() {
             </span>
           </h2>
           <p className="text-lg text-slate-400 mb-8">
-            Reach out if you want to talk about{" "}
-            <span className="text-slate-300">logistics products</span>,{" "}
-            <span className="text-slate-300">AI for operations</span>, or{" "}
-            <span className="text-slate-300">PM workflows</span>.
+            If you&apos;re building in{" "}
+            <span className="text-slate-300">logistics, shipping, or supply chain technology</span>
+            , I&apos;d be glad to connect.
           </p>
 
           {/* Social Links */}

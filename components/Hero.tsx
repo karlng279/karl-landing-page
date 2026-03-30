@@ -53,33 +53,36 @@ export default function Hero() {
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Technical Product Manager
+            Technical Product Manager – Container Shipping & Logistics Systems
           </p>
 
           {/* Description */}
           <p
-            className={`text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-400 ${
+            className={`text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed transition-all duration-700 delay-400 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            I turn messy logistics workflows into{" "}
+            Specialized in{" "}
             <span className="text-primary-600 dark:text-primary-400 font-medium">
-              usable software
-            </span>
-            . Building at the intersection of{" "}
-            <span className="text-slate-800 dark:text-slate-200 font-medium">
-              shipping & logistics
-            </span>
-            ,{" "}
-            <span className="text-slate-800 dark:text-slate-200 font-medium">
-              AI
-            </span>
-            , and{" "}
-            <span className="text-slate-800 dark:text-slate-200 font-medium">
-              hands-on delivery
-            </span>
-            .
+              Booking, Shipping Documentation (SI/BL), and Shipment Visibility
+            </span>{" "}
+            — delivering measurable impact across global logistics platforms, with hands-on execution from concept to product.
           </p>
+
+          {/* Relocating / Role badge */}
+          <div
+            id="hero-status-badge"
+            className={`hidden flex justify-center mb-10 transition-all duration-700 delay-450 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <a
+              href="#opportunities"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50 hover:bg-amber-100 dark:hover:bg-amber-900/40 hover:border-amber-400 dark:hover:border-amber-500 transition-colors duration-200"
+            >
+              📍 Relocating to the US · Open to Product & Logistics roles
+            </a>
+          </div>
 
           {/* CTA Buttons */}
           <div
@@ -87,7 +90,7 @@ export default function Hero() {
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <a href="#work" className="btn-primary">
+            <a href="#enterprise-work" className="btn-primary">
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -101,7 +104,7 @@ export default function Hero() {
                   d="M19 14l-7 7m0 0l-7-7m7 7V3"
                 />
               </svg>
-              Explore My Work
+              View Case Studies
             </a>
             <a
               href="#connect"
