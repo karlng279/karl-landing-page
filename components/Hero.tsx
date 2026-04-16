@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const GhostCursor = dynamic(() => import("./GhostCursor"), { ssr: false });
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -25,6 +28,23 @@ export default function Hero() {
           backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
           backgroundSize: "40px 40px",
         }}
+      />
+
+      {/* Ghost cursor trail effect */}
+      <GhostCursor
+        color="#38bdf8"
+        brightness={1.2}
+        trailLength={24}
+        inertia={0.4}
+        bloomStrength={0.8}
+        bloomRadius={0.7}
+        bloomThreshold={0.0}
+        grainIntensity={0.04}
+        fadeDelayMs={600}
+        fadeDurationMs={800}
+        zIndex={1}
+        mixBlendMode="screen"
+        edgeIntensity={0.3}
       />
 
       <div className="section-container relative z-10">
