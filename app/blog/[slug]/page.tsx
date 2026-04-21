@@ -25,15 +25,25 @@ export async function generateMetadata({
 }
 
 const CAT_CONFIG: Record<Category, { label: string; color: string; bg: string }> = {
-  "container-shipping": {
-    label: "Container Shipping",
-    color: "#0e7490",
-    bg: "rgba(14,116,144,0.1)",
+  product: {
+    label: "Product",
+    color: "#2563eb",
+    bg: "rgba(37,99,235,0.1)",
+  },
+  management: {
+    label: "Management",
+    color: "#16a34a",
+    bg: "rgba(22,163,74,0.1)",
   },
   "ai-adoption": {
     label: "AI Adoption",
-    color: "#c026d3",
-    bg: "rgba(192,38,211,0.1)",
+    color: "#dc2626",
+    bg: "rgba(220,38,38,0.1)",
+  },
+  "container-shipping": {
+    label: "Container Shipping",
+    color: "#db2777",
+    bg: "rgba(219,39,119,0.1)",
   },
 };
 
@@ -57,24 +67,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <Header />
       <main className="min-h-screen pt-24 pb-20">
         <div className="max-w-[720px] mx-auto px-6">
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors mb-8 no-underline"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-1.5 text-sm mb-8 flex-wrap">
+            <Link
+              href="/blog"
+              className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors no-underline"
+            >
+              All Posts
+            </Link>
+            <svg className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-            All posts
-          </Link>
-
-          {/* Category tag */}
-          <span
-            className="inline-flex items-center self-start px-2.5 py-[3px] rounded-full text-[11px] font-semibold tracking-wide mb-4"
-            style={{ background: cat.bg, color: cat.color }}
-          >
-            {cat.label}
-          </span>
+            <Link
+              href={`/blog?category=${post.category}`}
+              className="transition-colors no-underline font-medium"
+              style={{ color: cat.color }}
+            >
+              {cat.label}
+            </Link>
+            <svg className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <span className="text-slate-500 dark:text-slate-400 truncate max-w-[260px]">{post.title}</span>
+          </nav>
 
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50 mb-4">

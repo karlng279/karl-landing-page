@@ -1,23 +1,60 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { PostMeta, Category } from "@/lib/posts";
 import Connect from "@/components/Connect";
 
-const CAT_CONFIG: Record<Category, { label: string; color: string; bg: string; border: string }> = {
-  "container-shipping": {
-    label: "Container Shipping",
-    color: "#0e7490",
-    bg: "rgba(14,116,144,0.1)",
-    border: "#0e7490",
+export const CAT_CONFIG: Record<
+  Category,
+  { label: string; color: string; bg: string; emptyIcon: string; emptyHint: string }
+> = {
+  product: {
+    label: "Product",
+    color: "#2563eb",
+    bg: "rgba(37,99,235,0.1)",
+    emptyIcon: "📦",
+    emptyHint: "Product strategy, roadmaps, and decision-making frameworks.",
+  },
+  management: {
+    label: "Management",
+    color: "#16a34a",
+    bg: "rgba(22,163,74,0.1)",
+    emptyIcon: "🗂️",
+    emptyHint: "Team leadership, processes, and organizational learnings.",
   },
   "ai-adoption": {
     label: "AI Adoption",
-    color: "#c026d3",
-    bg: "rgba(192,38,211,0.1)",
-    border: "#c026d3",
+    color: "#dc2626",
+    bg: "rgba(220,38,38,0.1)",
+    emptyIcon: "🤖",
+    emptyHint: "AI in logistics ops — where it helps and where it still hypes.",
   },
+  "container-shipping": {
+    label: "Container Shipping",
+    color: "#db2777",
+    bg: "rgba(219,39,119,0.1)",
+    emptyIcon: "🚢",
+    emptyHint:
+      "Booking flows, documentation, visibility, and trade-lane insights.",
+  },
+};
+
+const FILTER_ORDER: Array<"all" | Category> = [
+  "all",
+  "product",
+  "management",
+  "ai-adoption",
+  "container-shipping",
+];
+
+const FILTER_LABELS: Record<string, string> = {
+  all: "All",
+  product: "Product",
+  management: "Management",
+  "ai-adoption": "AI Adoption",
+  "container-shipping": "Container Shipping",
 };
 
 function formatDate(dateStr: string) {
@@ -47,7 +84,8 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
           className="h-full w-full relative flex items-center justify-center flex-col gap-1.5"
           style={{
             minHeight: featured ? 240 : 156,
-            background: "repeating-linear-gradient(-45deg,#f1f5f9,#f1f5f9 2px,#f8fafc 2px,#f8fafc 18px)",
+            background:
+              "repeating-linear-gradient(-45deg,#f1f5f9,#f1f5f9 2px,#f8fafc 2px,#f8fafc 18px)",
           }}
         >
           <div
@@ -62,9 +100,10 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
 
       {/* Body */}
       <div
-        className={`flex flex-col gap-2.5 flex-1 ${featured ? "p-7 md:p-8 justify-center" : "p-5 pt-4"}`}
+        className={`flex flex-col gap-2.5 flex-1 ${
+          featured ? "p-7 md:p-8 justify-center" : "p-5 pt-4"
+        }`}
       >
-        {/* Category tag */}
         <span
           className="inline-flex items-center gap-1.5 self-start px-2.5 py-[3px] rounded-full text-[11px] font-semibold tracking-wide"
           style={{ background: cat.bg, color: cat.color }}
@@ -72,7 +111,6 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
           {cat.label}
         </span>
 
-        {/* Title */}
         <h2
           className={`font-bold leading-snug tracking-tight text-slate-900 dark:text-slate-50 group-hover:text-violet-700 dark:group-hover:text-violet-400 transition-colors ${
             featured ? "text-xl md:text-[22px]" : "text-base"
@@ -81,7 +119,6 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
           {post.title}
         </h2>
 
-        {/* Excerpt */}
         <p
           className={`text-sm text-slate-500 dark:text-slate-400 leading-relaxed ${
             featured ? "line-clamp-4" : "line-clamp-3"
@@ -90,7 +127,6 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
           {post.excerpt}
         </p>
 
-        {/* Meta */}
         <div className="flex items-center flex-wrap gap-2 mt-1 text-xs text-slate-400 dark:text-slate-500">
           <span>{formatDate(post.date)}</span>
           <span>·</span>
@@ -109,20 +145,82 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
   );
 }
 
+function EmptyState({ category, onReset }: { category: Category; onReset: () => void }) {
+  const cat = CAT_CONFIG[category];
+  return (
+    <div className="flex flex-col items-center justify-center py-24 px-6 text-center">
+      {/* Icon bubble */}
+      <div
+        className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5"
+        style={{ background: cat.bg }}
+      >
+        {cat.emptyIcon}
+      </div>
+
+      {/* Heading */}
+      <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">
+        No{" "}
+        <span style={{ color: cat.color }}>{cat.label}</span> posts yet
+      </h2>
+
+      {/* Hint */}
+      <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed mb-6">
+        {cat.emptyHint}
+      </p>
+
+      {/* Divider with label */}
+      <div className="flex items-center gap-3 w-full max-w-xs mb-6">
+        <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
+        <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">
+          in the meantime
+        </span>
+        <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
+      </div>
+
+      {/* CTA */}
+      <button
+        onClick={onReset}
+        className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors cursor-pointer"
+        style={{ color: cat.color }}
+      >
+        Browse all posts
+        <svg
+          className="w-3.5 h-3.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 type Filter = "all" | Category;
 
 export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
-  const [filter, setFilter] = useState<Filter>("all");
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const filtered = filter === "all" ? posts : posts.filter((p) => p.category === filter);
+  const initialFilter = (): Filter => {
+    const cat = searchParams.get("category");
+    if (cat && (FILTER_ORDER as string[]).includes(cat)) return cat as Filter;
+    return "all";
+  };
+
+  const [filter, setFilter] = useState<Filter>(initialFilter);
+
+  const applyFilter = (id: Filter) => {
+    setFilter(id);
+    router.replace(id === "all" ? "/blog" : `/blog?category=${id}`, { scroll: false });
+  };
+
+  const filtered =
+    filter === "all" ? posts : posts.filter((p) => p.category === filter);
   const featured = filtered[0];
   const rest = filtered.slice(1);
-
-  const filterButtons: { id: Filter; label: string }[] = [
-    { id: "all", label: "All" },
-    { id: "container-shipping", label: "Container Shipping" },
-    { id: "ai-adoption", label: "AI Adoption" },
-  ];
 
   return (
     <>
@@ -143,55 +241,48 @@ export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
 
             {/* Filter pills */}
             <div className="flex items-center gap-2 flex-wrap">
-              {filterButtons.map(({ id, label }) => {
+              {FILTER_ORDER.map((id) => {
                 const active = filter === id;
                 const catColor =
                   id !== "all" ? CAT_CONFIG[id as Category].color : "#7c3aed";
                 return (
                   <button
                     key={id}
-                    onClick={() => setFilter(id)}
-                    className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none"
+                    onClick={() => applyFilter(id)}
+                    className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none cursor-pointer"
                     style={{
-                      border: `1.5px solid ${active ? catColor : ""}`,
-                      borderColor: active
-                        ? catColor
-                        : "rgba(148,163,184,0.4)",
-                      background: active
-                        ? `${catColor}18`
-                        : "transparent",
-                      color: active
-                        ? catColor
-                        : "var(--tw-prose-body, #64748b)",
+                      borderWidth: "1.5px",
+                      borderStyle: "solid",
+                      borderColor: active ? catColor : "rgba(148,163,184,0.4)",
+                      background: active ? `${catColor}18` : "transparent",
+                      color: active ? catColor : "#64748b",
                     }}
                   >
-                    {label}
+                    {FILTER_LABELS[id]}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Featured post */}
-          {featured && (
-            <div className="mb-8">
-              <BlogCard post={featured} featured />
-            </div>
-          )}
-
-          {/* Card grid */}
-          {rest.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rest.map((post) => (
-                <BlogCard key={post.slug} post={post} />
-              ))}
-            </div>
-          )}
-
-          {filtered.length === 0 && (
-            <div className="text-center py-20 text-slate-400 dark:text-slate-500 text-[15px]">
-              No posts yet in this category.
-            </div>
+          {/* Posts or empty state */}
+          {filtered.length === 0 ? (
+            <EmptyState category={filter as Category} onReset={() => applyFilter("all")} />
+          ) : (
+            <>
+              {featured && (
+                <div className="mb-8">
+                  <BlogCard post={featured} featured />
+                </div>
+              )}
+              {rest.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {rest.map((post) => (
+                    <BlogCard key={post.slug} post={post} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </main>

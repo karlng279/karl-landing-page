@@ -61,7 +61,7 @@ export default function Header() {
     >
       <div className="max-w-[1100px] mx-auto w-full flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 no-underline group">
+        <Link href="/" className="flex items-center no-underline group">
           <Image
             src="/images/logos/kn-logo-1-1.svg"
             alt="Karl Nguyen"
@@ -69,9 +69,6 @@ export default function Header() {
             height={34}
             className="flex-shrink-0"
           />
-          <span className="font-semibold text-[15px] tracking-tight text-slate-800 dark:text-slate-100">
-            Karl Nguyen
-          </span>
         </Link>
 
         {/* Nav */}

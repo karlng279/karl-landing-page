@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "content/blog");
 
-export type Category = "container-shipping" | "ai-adoption";
+export type Category = "container-shipping" | "ai-adoption" | "product" | "management";
 
 export interface PostMeta {
   slug: string;
