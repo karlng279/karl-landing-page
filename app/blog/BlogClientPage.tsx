@@ -65,7 +65,7 @@ function formatDate(dateStr: string) {
   });
 }
 
-function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boolean }) {
+function BlogCard({ post, featured = false, pinned = false }: { post: PostMeta; featured?: boolean; pinned?: boolean }) {
   const cat = CAT_CONFIG[post.category];
   return (
     <Link
@@ -110,6 +110,14 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
           featured ? "p-7 md:p-8 justify-center" : "p-5 pt-4"
         }`}
       >
+        {pinned && (
+          <span className="inline-flex items-center gap-1 self-start text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
+            </svg>
+            Pinned
+          </span>
+        )}
         <span
           className="inline-flex items-center gap-1.5 self-start px-2.5 py-[3px] rounded-full text-[11px] font-semibold tracking-wide"
           style={{ background: cat.bg, color: cat.color }}
@@ -225,8 +233,9 @@ export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
 
   const filtered =
     filter === "all" ? posts : posts.filter((p) => p.category === filter);
-  const featured = filtered[0];
-  const rest = filtered.slice(1);
+  const pinnedPost = filter === "all" ? filtered.find((p) => p.pinned) : undefined;
+  const featured = pinnedPost ?? filtered[0];
+  const rest = filtered.filter((p) => p !== featured);
 
   return (
     <>
@@ -278,7 +287,7 @@ export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
             <>
               {featured && (
                 <div className="mb-8">
-                  <BlogCard post={featured} featured />
+                  <BlogCard post={featured} featured pinned={!!pinnedPost} />
                 </div>
               )}
               {rest.length > 0 && (

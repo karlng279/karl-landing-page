@@ -6,6 +6,7 @@ tags: AI, Product Management, Workflow
 excerpt: Not theory — actual tools, prompts, and workflows I use to go from customer feedback to a structured PRD faster than ever before.
 readTime: 6
 image: /images/blog/pm-using-ai-daily/cover.svg
+pinned: true
 ---
 
 ## This Is Not a "AI Will Change Everything" Post

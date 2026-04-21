@@ -15,6 +15,7 @@ export interface PostMeta {
   excerpt: string;
   readTime: number;
   image?: string;
+  pinned?: boolean;
 }
 
 export interface Post extends PostMeta {
@@ -43,6 +44,7 @@ export function getAllPosts(): PostMeta[] {
         excerpt: data.excerpt ?? "",
         readTime: data.readTime ?? 5,
         image: data.image ?? undefined,
+        pinned: data.pinned ?? false,
       } as PostMeta;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -66,6 +68,7 @@ export function getPost(slug: string): Post | null {
     excerpt: data.excerpt ?? "",
     readTime: data.readTime ?? 5,
     image: data.image ?? undefined,
+    pinned: data.pinned ?? false,
     content,
   };
 }
