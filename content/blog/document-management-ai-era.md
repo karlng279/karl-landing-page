@@ -5,6 +5,7 @@ category: management
 tags: documentation, AI, knowledge management, team productivity
 excerpt: AI has accelerated development speed dramatically — but most teams haven't updated how they manage documentation to match. Here's a practical approach to keeping your docs alive in an era of rapid change.
 readTime: 7
+image: /images/blog/document-management-ai-era/cover.svg
 ---
 
 AI-assisted development has changed the pace of software delivery. What used to take a sprint now takes an afternoon. Features ship faster, APIs evolve faster, and architecture decisions get revisited more often.

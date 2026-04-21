@@ -5,6 +5,7 @@ category: ai-adoption
 tags: AI, Operations, Automation
 excerpt: Carriers and freight forwarders are experimenting with AI across their ops stack. Most projects fail not because of technology — but because of poor data foundations.
 readTime: 5
+image: /images/blog/ai-adoption-shipping-ops/cover.png
 ---
 
 ## Everyone Has an AI Strategy. Most Don't Have the Data for It.

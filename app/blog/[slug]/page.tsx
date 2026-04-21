@@ -21,6 +21,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} — Karl Nguyen`,
     description: post.excerpt,
+    openGraph: post.image ? { images: [post.image] } : undefined,
   };
 }
 
@@ -90,6 +91,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </svg>
             <span className="text-slate-500 dark:text-slate-400 truncate max-w-[260px]">{post.title}</span>
           </nav>
+
+          {/* Hero image */}
+          {post.image && (
+            <div className="rounded-2xl overflow-hidden mb-8 border border-slate-200/60 dark:border-slate-700/60">
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full object-cover"
+                style={{ maxHeight: 420 }}
+              />
+            </div>
+          )}
 
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50 mb-4">

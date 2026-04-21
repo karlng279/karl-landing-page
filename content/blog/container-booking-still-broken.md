@@ -5,6 +5,7 @@ category: container-shipping
 tags: Booking, UX, eCommerce
 excerpt: Despite years of digital transformation, most container booking flows still demand too much from users too early. Here's what's not changing — and why it matters.
 readTime: 5
+image: /images/blog/container-booking-still-broken/cover.svg
 ---
 
 ## The Problem Nobody Wants to Say Out Loud

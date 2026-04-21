@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="16" height="16" patternTransform="rotate(-45)">
+      <rect width="16" height="16" fill="#f1f5f9"/>
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#e2e8f0" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#hatch)"/>
+  <rect x="0" y="0" width="6" height="630" fill="#db2777" opacity="0.7"/>
+  <rect x="540" y="255" width="120" height="120" rx="24" fill="#db2777" opacity="0.15"/>
+  <text x="600" y="430" font-family="system-ui,sans-serif" font-size="15" fill="#94a3b8" text-anchor="middle" letter-spacing="4" font-weight="600">COVER IMAGE</text>
+</svg>

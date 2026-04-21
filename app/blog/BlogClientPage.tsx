@@ -75,27 +75,33 @@ function BlogCard({ post, featured = false }: { post: PostMeta; featured?: boole
       }`}
       style={{ boxShadow: "0 2px 16px rgba(100,100,140,0.08)" }}
     >
-      {/* Thumbnail placeholder */}
+      {/* Thumbnail */}
       <div
-        className={`flex-shrink-0 ${featured ? "md:w-[320px]" : "w-full"}`}
-        style={{ height: featured ? undefined : 156 }}
+        className={`flex-shrink-0 overflow-hidden ${featured ? "md:w-[320px]" : "w-full"}`}
+        style={{ minHeight: featured ? 240 : 156, height: featured ? undefined : 156 }}
       >
-        <div
-          className="h-full w-full relative flex items-center justify-center flex-col gap-1.5"
-          style={{
-            minHeight: featured ? 240 : 156,
-            background:
-              "repeating-linear-gradient(-45deg,#f1f5f9,#f1f5f9 2px,#f8fafc 2px,#f8fafc 18px)",
-          }}
-        >
-          <div
-            className="w-8 h-8 rounded-lg opacity-25"
-            style={{ background: cat.color }}
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="h-full w-full object-cover"
+            style={{ minHeight: featured ? 240 : 156 }}
           />
-          <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400">
-            cover image
-          </span>
-        </div>
+        ) : (
+          <div
+            className="h-full w-full flex items-center justify-center flex-col gap-1.5"
+            style={{
+              minHeight: featured ? 240 : 156,
+              background:
+                "repeating-linear-gradient(-45deg,#f1f5f9,#f1f5f9 2px,#f8fafc 2px,#f8fafc 18px)",
+            }}
+          >
+            <div className="w-8 h-8 rounded-lg opacity-25" style={{ background: cat.color }} />
+            <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+              cover image
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Body */}

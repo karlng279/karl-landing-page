@@ -5,6 +5,7 @@ category: management
 tags: stakeholder management, enterprise, product management, container shipping
 excerpt: Building customer-facing products in enterprise container shipping means navigating engineers, ops, and business stakeholders with different incentives. Here's how to build the soft-power skills that make plans stick.
 readTime: 8
+image: /images/blog/stakeholder-management-container-shipping/cover.svg
 ---
 
 Most product management frameworks treat stakeholder management as a communication exercise. Send the right update to the right person at the right cadence, and you're done.
