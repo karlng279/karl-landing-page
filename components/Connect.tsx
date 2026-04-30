@@ -86,7 +86,7 @@ export default function Connect() {
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Let&apos;s{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-accent-400">
+            <span className="gradient-text-accent">
               Connect
             </span>
           </h2>

@@ -5,6 +5,7 @@ import WorkFlow from "@/components/WorkFlow";
 import ProjectCard from "@/components/ProjectCard";
 import Connect from "@/components/Connect";
 import OpportunitiesBanner from "@/components/OpportunitiesBanner";
+import Header from "@/components/Header";
 
 // Icons for What I Work On section
 const ProductStrategyIcon = () => (
@@ -153,9 +154,11 @@ const skillsData = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <Hero />
+    <>
+      <Header />
+      <main className="min-h-screen pt-16">
+        {/* Hero Section */}
+        <Hero />
 
       {/* My Domain Expertise Section */}
       <Section
@@ -494,5 +497,6 @@ export default function Home() {
       {/* Connect Section (Footer) */}
       <Connect />
     </main>
+    </>
   );
 }
