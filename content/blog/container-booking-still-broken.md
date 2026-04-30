@@ -1,6 +1,6 @@
 ---
 title: Why Container Booking Is Still Broken in 2026
-date: 2026-04-15
+date: 2026-04-05
 category: container-shipping
 tags: Booking, UX, eCommerce
 excerpt: Despite years of digital transformation, most container booking flows still demand too much from users too early. Here's what's not changing — and why it matters.
