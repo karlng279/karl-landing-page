@@ -1,98 +1,372 @@
 ---
-title: "Document Management in the AI Era"
+title: "Document Management in the AI Era (From a PM’s Perspective)"
 date: 2026-04-15
 category: management
-tags: documentation, AI, knowledge management, team productivity
-excerpt: AI has accelerated development speed dramatically — but most teams haven't updated how they manage documentation to match. Here's a practical approach to keeping your docs alive in an era of rapid change.
+tags: documentation, AI, product management, stakeholder management
+excerpt: Most PMs don't struggle with writing docs — they struggle with keeping information consistent across meetings, teams, and releases. AI makes this worse. Here's how I manage it.
 readTime: 7
-image: /images/blog/document-management-ai-era/cover.svg
-published: false
+image: /images/blog/document-management-ai-era/cover.png
+published: true
 ---
 
-AI-assisted development has changed the pace of software delivery. What used to take a sprint now takes an afternoon. Features ship faster, APIs evolve faster, and architecture decisions get revisited more often.
+## This Is Not About Writing Better Notes
 
-Most teams have not updated their documentation practices to match.
+If you're a PM, your problem is not “how to write documentation.”
 
-The result is a documentation graveyard: wikis full of pages that describe how the system worked six months ago, README files that refer to packages that were deprecated last quarter, onboarding guides that walk new hires through flows that no longer exist. The faster development moves, the faster docs decay — and in most teams, no one owns the problem.
+Your problem is this:
 
-This post is a practical approach to documentation that doesn't assume you have infinite time or a dedicated technical writer.
+- Exec says one thing in a quarterly meeting  
+- Team hears a slightly different version  
+- Delivery reflects something else entirely  
 
-## The Problem with Traditional Documentation Cultures
+And three weeks later, no one remembers what was actually decided.
 
-The traditional model: developers build the thing, then someone writes documentation after the fact. Documentation is treated as a deliverable — written once, filed somewhere, and forgotten.
+That’s the real documentation problem.
 
-This model fails for three reasons:
+AI didn’t create this problem.  
+It just made it worse — because now things move faster, decisions change faster, and misalignment compounds faster.
 
-**Docs written after the fact are already out of date.** By the time someone writes the spec, the implementation has already diverged from the original design. What gets documented is often the intended behaviour, not the actual behaviour.
+## The Real Job: Managing Information Flow
 
-**No one maintains what no one owns.** When documentation is a team-level resource with no individual owner, it drifts. Everyone assumes someone else will update it when things change.
+As a PM, you don’t “write docs.”
 
-**AI-assisted development accelerates decay.** When a developer can refactor a service in two hours using an AI coding assistant, the documentation written last month is wrong by Wednesday. The faster iteration becomes, the faster legacy docs become liabilities rather than assets.
+You manage how information flows across 3 layers:
 
-## Shift from Document-Once to Living Documentation
+- **Executive layer** → strategy, direction, priorities  
+- **Team layer** → backlog, delivery, execution  
+- **System layer** → what actually gets shipped  
 
-The core principle is: **documentation should be as close to the source of truth as possible, and updated in the same motion as code changes.**
+If those 3 are not aligned, your product breaks — even if your code is perfect.
 
-This sounds obvious but has specific implications for how you structure and store docs.
+Most documentation fails because it only exists in one layer.
 
-### Collocate docs with code
+## Where PMs Actually Live
 
-Product specs, architecture decisions, and API documentation should live in the repository, not in a separate wiki. When a developer opens a PR to change a service, the docs for that service should be in the same place — making it obvious when they're out of date and creating natural pull-request discipline around keeping them current.
+Let’s be honest.
 
-Tools like `docs/` directories, `README.md` files per service, and Architecture Decision Records (ADRs) in the repo enforce this collocation.
+Most PMs don’t live in GitHub.
 
-### Use AI to draft, not to maintain
+We live in:
+- Google Docs / Google Drive  
+- Confluence  
+- Slack / Email  
+- Meeting notes  
 
-AI writing tools are excellent at generating first drafts from code, comments, or bullet points. Use them to:
-- Generate API documentation from code annotations
-- Draft release notes from commit messages or PR descriptions
-- Convert raw meeting notes into structured decision documents
-- Summarise long specification threads into canonical single-source documents
+And that’s exactly why things fall apart.
 
-What AI cannot do is know which documentation is stale. That judgement requires a human who understands what changed and why.
+Because these tools are:
+- fragmented  
+- duplicated  
+- rarely maintained  
 
-## A Practical System: The Four-Layer Model
+You don’t have a documentation system.  
+You have scattered artifacts.
 
-Not all documentation needs the same level of maintenance. Categorise your docs by decay rate:
+## The Core Problem: Decision Drift
 
-**Layer 1 — Auto-generated (zero manual maintenance)**
-API schemas, type definitions, database schemas. These should be generated directly from code using tools like OpenAPI generators, TypeDoc, or database introspection scripts. If a human is manually updating these, you have a process problem.
+Here’s a pattern I see all the time:
 
-**Layer 2 — PR-linked (updated with every change)**
-Service READMEs, configuration documentation, integration guides. These live in the repo. Your team's PR template should include a checkbox: *"Does this change require a documentation update?"* Not a bureaucratic step — a reminder that shifts the habit.
+1. Decision made in a meeting  
+2. Captured in notes (maybe)  
+3. Slightly reinterpreted in a follow-up doc  
+4. Further diluted in Jira / backlog  
+5. Final implementation reflects assumptions  
 
-**Layer 3 — Milestone-triggered (updated at sprint or release boundaries)**
-Architecture diagrams, decision logs, product specifications. These don't change with every PR but should be reviewed at defined intervals. Assign ownership explicitly — not "the team," but a named person who reviews this document at the end of each sprint.
+At no point do we validate:
 
-**Layer 4 — Quarterly review (high-level, slow to change)**
-Onboarding guides, team process documents, strategic product context. These change slowly but can cause significant damage when they go stale. Build a quarterly doc audit into your team calendar. Use AI to help identify which sections have diverged from current reality by comparing them against recent commits or changelogs.
+> “Is this still the original decision?”
 
-## Making AI a Documentation Ally
+That’s how you end up with:
+- features that “technically correct” but wrong in intent  
+- stakeholders saying “this is not what I asked for”  
+- teams wasting cycles re-aligning  
 
-Here's where the AI era creates a genuine opportunity rather than just acceleration risk.
+## A Real Case: Consignee Authority vs Shipment Visibility
 
-**Changelog summarisation:** Most teams have AI summarise code changes anyway. Pipe those summaries into a running changelog that gets automatically appended to a `/docs/changelog.md` file. Human-reviewable, but AI-generated. Stale documentation becomes visible because the changelog keeps moving.
-
-**Staleness detection:** Use a simple script (or ask an AI assistant) to flag documentation files that haven't been touched in 60+ days while the code they reference has changed. This isn't a perfect system, but it creates a queue of "probably stale, please check" items that a team lead can review weekly.
-
-**Onboarding generation:** When you onboard a new team member, have them work through your documentation and flag anything that doesn't match what they observe in the codebase. This is a brutal but effective audit. AI tools can assist here — pair the new hire with an AI assistant to cross-reference docs against the actual code, surfacing discrepancies for the team to resolve.
-
-**Decision capture:** Engineering and product discussions that happen in Slack, in PR comments, or in meetings often contain important context that never makes it into documentation. Use AI summarisation to capture decision threads into structured ADRs (Architecture Decision Records) that get committed to the repo. The decision is preserved; the chat thread can be archived.
-
-## The Human Layer
-
-None of this works without ownership.
-
-Documentation debt accumulates when no one is accountable for it. The fix isn't a new tool — it's assigning named owners and creating the right checkpoints.
-
-**For each service or product area:** One engineer owns the README and integration docs. When that service changes, they update the docs. Not optional — part of the definition of done.
-
-**For architecture and cross-team decisions:** A rotation among senior engineers for ADR maintenance. Each sprint, whoever is on rotation reviews the ADR backlog and updates or closes stale entries.
-
-**For product documentation:** The PM owns it. Product specs, feature descriptions, and user-facing help content are not the engineering team's job. PMs who treat documentation as someone else's problem end up with a team that can't onboard, customers who are confused, and support queues full of questions your docs should have answered.
+This is a more subtle (and more dangerous) case — because nothing is “obviously broken.”
 
 ---
 
-AI has changed the pace of development. The teams that manage documentation well in this era are the ones who treat it as infrastructure — designed, maintained, and owned — not as a nice-to-have that happens after the work is done.
+**Stakeholder discussion (business + compliance):**
 
-The tools are better than they've ever been. The discipline required is the same as it's always been.
+- Decision direction:
+  → Limit **Consignee authority on booking actions** (edit, change, SI submission) during Export stage  
+
+- Reason:
+  → Reduce risk of unauthorized changes  
+  → Align with compliance / ownership boundaries  
+
+- Implicit expectation:
+  → Consignee should still have **visibility into shipment status**
+
+Captured loosely as:
+> “Restrict consignee actions on export booking”
+
+---
+
+**Engineering discussion:**
+
+- Focus shifts to:
+  - role-based access control
+  - API permission handling
+  - UI enable/disable logic  
+
+- Simplified interpretation:
+  → “Consignee = restricted role during export stage”
+
+---
+
+**What gets implemented:**
+
+- Consignee cannot:
+  - edit booking
+  - submit SI
+  - trigger changes  
+
+- But also:
+  - reduced visibility on shipment updates (unintended side effect)
+
+---
+
+**After release:**
+
+- Stakeholders ask:
+  → “Why can’t consignee see shipment progress clearly?”
+
+- Engineering response:
+  → “We restricted their role as discussed”
+
+- Business response:
+  → “We said restrict actions, not visibility”
+
+---
+
+Everyone is technically correct.  
+But the outcome is wrong.
+
+---
+
+### What actually broke?
+
+Not the feature.
+
+The **interpretation between layers**:
+
+- “Authority restriction” became “role restriction”
+- “Action control” became “access control”
+- Visibility requirement was never explicitly documented
+
+---
+
+### What I do differently now
+
+For cases like this, I don’t allow a single-layer definition.
+
+I force 3 aligned views:
+
+**1. Stakeholder intent**
+- Limit consignee **actions**
+- Maintain necessary **visibility**
+
+**2. Constraint layer**
+- Compliance: restrict modification rights  
+- UX: visibility must not degrade  
+- Ops: avoid confusion for tracking
+
+**3. Engineering definition**
+- Disable specific actions (edit/change/SI)  
+- Keep read-only access to shipment milestones  
+- Ensure UI clearly separates “view vs act”
+
+---
+
+And before build, I validate:
+
+> Are we restricting behavior — or restricting access?
+
+If that question is not explicitly answered, the implementation will drift.
+
+## What I Actually Do (As a PM)
+
+### 1. Treat meeting notes as decision logs — not transcripts
+
+Most meeting notes are useless.
+
+They try to capture everything, so they capture nothing.
+
+What matters is not:
+- who said what  
+- how long the discussion took  
+
+What matters is:
+
+- What was decided?
+- What options were rejected?
+- What assumptions were made?
+
+If your notes don’t answer those 3 questions, they’re noise.
+
+AI helps here:
+- summarize discussions
+- extract decisions
+- structure messy conversations
+
+But again — you still need to validate the output.
+
+---
+
+### 2. Create a single “broadcast version” for executive decisions
+
+One of the biggest gaps I see:
+
+Exec meetings happen → but the team never gets a clean version of it.
+
+Instead:
+- bits and pieces get shared in Slack
+- PM paraphrases in standups
+- everyone interprets differently
+
+What I do instead:
+
+After any important exec discussion, I create a **broadcast version**:
+
+- 1 page max
+- clear direction
+- no ambiguity
+- no meeting noise
+
+This becomes:
+- the reference for the team
+- the anchor for backlog decisions
+- the source of truth when conflicts happen
+
+Without this step, alignment is just luck.
+
+---
+
+### 3. Separate “working docs” vs “source of truth”
+
+Another common mistake:
+
+Everything is treated equally.
+
+But not all docs serve the same purpose.
+
+I split them clearly:
+
+**Working docs (temporary)**
+- raw notes
+- brainstorming
+- drafts
+
+→ messy by nature
+
+---
+
+**Source of truth (stable)**
+- final decisions
+- product direction
+- release scope
+
+→ clean, minimal, maintained
+
+If you mix these two, your system collapses.
+
+Because people don’t know what to trust.
+
+---
+
+### 4. Use AI to reduce friction — not replace thinking
+
+Where AI actually helps me:
+
+- turn meeting notes → structured decisions  
+- summarize long threads → single view  
+- draft updates for stakeholders  
+
+Where it does NOT help:
+
+- deciding what matters  
+- validating alignment  
+- resolving ambiguity  
+
+If you rely on AI for those, you’re just scaling confusion faster.
+
+## Release Notes — Where Most Teams Fail Quietly
+
+This is the most underrated part of PM documentation.
+
+Most release notes are written like this:
+
+- “Improved shipment visibility”
+- “Enhanced permissions”
+- “Bug fixes”
+
+Which is basically useless.
+
+Because when something breaks later, you can’t answer:
+
+- What exactly changed?
+- Why did we change it?
+- What impact did we expect?
+
+### A better way to structure release notes
+
+I keep it simple:
+
+**1. What changed**
+→ “Restricted consignee from booking actions (edit/change/SI submission) during export stage, while maintaining read-only shipment visibility”
+
+**2. Why it changed**
+→ “Ensure compliance and prevent unauthorized booking modifications”
+
+**3. Expected impact**
+→ “Reduce risk of incorrect changes while preserving transparency for consignee”
+
+**4. Risk / side effect**
+→ “Potential confusion if UI does not clearly differentiate restricted actions vs allowed visibility”
+
+---
+
+### Why this matters
+
+Because later, when something happens, you can:
+
+- trace back decisions  
+- validate whether implementation matches intent  
+- identify whether issue is design vs execution  
+
+Without this, you’re guessing.
+
+## The Part Most PMs Avoid
+
+Ownership.
+
+Documentation breaks when:
+
+- no one owns it  
+- or worse — everyone owns it  
+
+As a PM, you don’t need to own everything.
+
+But you must own:
+
+- product decisions  
+- stakeholder alignment  
+- release communication  
+
+If you don’t, the system will fragment — guaranteed.
+
+## The Reality
+
+AI didn’t fix documentation.
+
+It exposed that most PMs were never managing it properly in the first place.
+
+The role is not “write docs.”
+
+The role is:
+
+> **make sure what was decided, what was communicated, and what was shipped are the same thing.**
+
+Everything else is secondary.
