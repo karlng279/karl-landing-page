@@ -16,6 +16,7 @@ export interface PostMeta {
   readTime: number;
   image?: string;
   pinned?: boolean;
+  published: boolean;
 }
 
 export interface Post extends PostMeta {
@@ -45,8 +46,10 @@ export function getAllPosts(): PostMeta[] {
         readTime: data.readTime ?? 5,
         image: data.image ?? undefined,
         pinned: data.pinned ?? false,
+        published: data.published !== false,
       } as PostMeta;
     })
+    .filter((p) => p.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -69,6 +72,7 @@ export function getPost(slug: string): Post | null {
     readTime: data.readTime ?? 5,
     image: data.image ?? undefined,
     pinned: data.pinned ?? false,
+    published: data.published !== false,
     content,
   };
 }
@@ -78,5 +82,10 @@ export function getAllSlugs(): string[] {
   return fs
     .readdirSync(postsDir)
     .filter((f) => f.endsWith(".md"))
+    .filter((f) => {
+      const raw = fs.readFileSync(path.join(postsDir, f), "utf8");
+      const { data } = matter(raw);
+      return data.published !== false;
+    })
     .map((f) => f.replace(/\.md$/, ""));
 }

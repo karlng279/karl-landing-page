@@ -6,6 +6,7 @@ tags: AI, Data, Product Strategy
 excerpt: Every logistics team I talk to wants AI features. Almost none of them have the structured data to support them. Here's the gap no one talks about.
 readTime: 4
 image: /images/blog/structured-data-before-ai/cover.svg
+published: false
 ---
 
 ## The AI Wishlist Is Real. The Foundation Usually Isn't.

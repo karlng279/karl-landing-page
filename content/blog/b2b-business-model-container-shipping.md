@@ -6,6 +6,7 @@ tags: product strategy, B2B, business model, container shipping, commercial
 excerpt: Product decisions don't exist in a vacuum — they're bets on how your company makes money. Here's how to think about business models in the container shipping B2B space so your roadmap supports commercial outcomes.
 readTime: 7
 image: /images/blog/b2b-business-model-container-shipping/cover.svg
+published: false
 ---
 
 A product manager who doesn't understand their company's business model is flying blind.

@@ -6,6 +6,7 @@ tags: Visibility, Tracking, Integrations
 excerpt: Real-time visibility is a solved problem technically. Yet most shippers still rely on emails and calls to know where their cargo is. The gap is organizational, not technical.
 readTime: 4
 image: /images/blog/shipment-visibility-gap/cover.svg
+published: false
 ---
 
 ## The Technology Is There. The Adoption Isn't.

@@ -6,6 +6,7 @@ tags: product management, logistics, supply chain, discovery, delivery
 excerpt: A practical end-to-end map of how products get built in the logistics and supply chain domain — from the messy discovery phase to post-launch iteration — with the nuances juniors rarely hear about.
 readTime: 8
 image: /images/blog/product-dev-lifecycle-logistics/cover.svg
+published: false
 ---
 
 Most product management frameworks were designed for consumer software. They break in logistics.

@@ -6,6 +6,7 @@ tags: release management, risk, deployment, logistics, engineering
 excerpt: Deploying to a logistics platform isn't like deploying a consumer app. Here's how to apply technical fluency to release strategy and incident response in a domain where downtime has real commercial consequences.
 readTime: 8
 image: /images/blog/release-strategy-risk-management/cover.svg
+published: false
 ---
 
 In consumer applications, a buggy release means some users get a frustrating experience for a few hours. The team rolls back, patches the issue, redeploys, and life goes on.

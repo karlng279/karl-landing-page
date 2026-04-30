@@ -6,6 +6,7 @@ tags: Documentation, B/L, Trade Finance
 excerpt: A practical breakdown of when a negotiable Bill of Lading is actually necessary — and when you're adding unnecessary complexity to your shipment.
 readTime: 4
 image: /images/blog/bl-vs-seaway-bill-when-to-use-what/cover.svg
+published: false
 ---
 
 ## The Confusion Is Understandable

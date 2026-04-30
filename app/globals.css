@@ -74,8 +74,12 @@ body {
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r 
+    @apply bg-clip-text text-transparent bg-gradient-to-r
            from-primary-600 via-accent-500 to-primary-500;
+  }
+
+  .gradient-text-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-accent-400;
   }
 
   .btn-primary {
@@ -143,5 +147,13 @@ body {
 /* Selection */
 ::selection {
   @apply bg-primary-200 dark:bg-primary-800;
+}
+
+.gradient-text::selection,
+.gradient-text *::selection,
+.gradient-text-accent::selection,
+.gradient-text-accent *::selection {
+  color: white;
+  background-color: theme('colors.primary.600');
 }
 

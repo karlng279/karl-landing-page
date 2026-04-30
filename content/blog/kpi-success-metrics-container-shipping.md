@@ -6,6 +6,7 @@ tags: KPI, metrics, product analytics, container shipping, enterprise
 excerpt: Outcome metrics tell you whether your product is actually working. Here's a practical guide to designing KPIs for container shipping enterprise products — from booking flows to visibility dashboards.
 readTime: 9
 image: /images/blog/kpi-success-metrics-container-shipping/cover.svg
+published: false
 ---
 
 Most product teams measure what's easy to count. Page views. Features shipped. API uptime. These are useful signals, but they're not the metrics that tell you whether your product is actually creating value.
