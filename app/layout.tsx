@@ -63,7 +63,7 @@ const themeScript = `
 (function(){
   try {
     var t = localStorage.getItem('kn-theme');
-    if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (t !== 'light') {
       document.documentElement.classList.add('dark');
     }
   } catch(e) {}
