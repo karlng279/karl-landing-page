@@ -1,135 +1,281 @@
 ---
-title: "KPI & Success Metric Design for Enterprise Products in Container Shipping"
+title: "KPI & Success Metrics — Things I Thought I Understood (But Didn’t)"
 date: 2026-03-28
 category: product
 tags: KPI, metrics, product analytics, container shipping, enterprise
-excerpt: Outcome metrics tell you whether your product is actually working. Here's a practical guide to designing KPIs for container shipping enterprise products — from booking flows to visibility dashboards.
+excerpt: I used to think KPIs were just numbers you put on a dashboard. Turns out... it's way more confusing than that.
 readTime: 9
-image: /images/blog/kpi-success-metrics-container-shipping/cover.svg
-published: false
+image: /images/blog/kpi-success-metrics-container-shipping/cover.png
+published: true
 ---
 
-Most product teams measure what's easy to count. Page views. Features shipped. API uptime. These are useful signals, but they're not the metrics that tell you whether your product is actually creating value.
+I’ll be honest — when I first got into product, I thought KPI design was pretty straightforward.
 
-In enterprise container shipping, where transactions are high-value, workflows are complex, and customer relationships span years, good metric design is the difference between a roadmap that compounds value and one that optimises for activity.
+Pick a few numbers. Put them on a dashboard. Track them every week. Done.
 
-## The Output vs. Outcome Problem
+Page views, booking volume, maybe conversion rate if you want to sound a bit more serious.
 
-**Output metrics** measure what your team produced: features shipped, tickets closed, deployments made. Useful for engineering cadence, but they don't tell you whether any of it worked.
+It *felt* like I was doing things right.
 
-**Outcome metrics** measure whether something changed in the world as a result of what you built: booking completion rate increased, documentation errors dropped, ops team now processes 40% more shipments per day.
+But after a few real projects (and a few uncomfortable questions from ops and stakeholders), I started realizing… I didn’t really understand what I was measuring.
 
-The goal of KPI design is to build a measurement stack where outputs are connected to outcomes, and outcomes are connected to business results. In container shipping, that chain looks like:
+Or worse — I didn’t understand why.
 
-```
-Feature shipped → Adoption → Workflow efficiency gain → Business outcome (revenue, retention, margin)
-```
+This post is not a “perfect guide.” It’s more like me trying to organize my thinking while I’m still learning KPI & success metrics the hard way.
 
-If you can't trace that chain from a feature to a business result, you shouldn't be confident it was worth building.
+---
 
-## The Container Shipping Metric Landscape
+## The First Mistake I Made: Measuring What’s Easy
 
-Different parts of the platform need different metrics. Here's a framework by domain:
+In one of my earlier projects, we tracked things like:
 
-### Booking & Rate Management
+- Number of features shipped  
+- Number of bookings created  
+- Page traffic on booking flow  
 
-| Metric | What it measures |
-|---|---|
-| Booking completion rate | % of initiated bookings that result in a confirmed booking |
-| Time-to-book | Minutes from search to booking confirmation |
-| Quote abandonment rate | % of rate queries that don't convert to booking |
-| Booking error rate | % of bookings with data errors requiring manual correction |
-| API booking share | % of bookings made via API vs. manual portal |
+Everything was going up. So naturally, I thought:
 
-**North Star for booking:** Booking completion rate × booking volume. These together tell you whether the platform is both usable and growing.
+> “Okay, this is working.”
 
-### Documentation & Compliance
+Then ops team came back with:
 
-| Metric | What it measures |
-|---|---|
-| Document error rate | % of documents with errors at time of submission |
-| First-pass acceptance rate | % of documents accepted without amendment by carrier/customs |
-| Documentation cycle time | Hours from booking confirmation to complete document set |
-| Late document rate | % of shipments with documents submitted after cut-off |
+> “Why are we handling more manual corrections than before?”
 
-In container shipping documentation, errors are expensive — a single incorrect HS code can trigger a customs hold. First-pass acceptance rate is often the most operationally meaningful metric in this domain.
+That question completely broke my confidence.
 
-### Visibility & Tracking
+Because none of our metrics could answer it.
 
-| Metric | What it measures |
-|---|---|
-| Milestone coverage rate | % of shipment lifecycle events with real-time data coverage |
-| ETA accuracy | Difference between predicted and actual arrival, measured in hours |
-| Exception alert response time | Time between exception alert and operator acknowledgement |
-| Proactive notification rate | % of delays communicated to customers before they notice |
+Looking back, the problem is obvious:  
+We were measuring activity — not impact.
 
-ETA accuracy is a frequently-requested metric by enterprise buyers. Be careful with how you define and present it — carrier data quality varies significantly by trade lane, and you should segment this metric by carrier and route, not just report a blended average.
+---
 
-### Customer & Commercial
+## Output vs Outcome (Took Me Longer Than It Should)
 
-| Metric | What it measures |
-|---|---|
-| Net Revenue Retention (NRR) | Revenue from existing customers including expansion, minus churn |
-| Feature adoption rate | % of eligible users who have used a feature within 30 days of launch |
-| Support ticket rate | Tickets per 100 transactions — proxy for friction |
-| Time-to-value | Days from customer onboarding to first successful transaction |
+This concept sounds basic now, but it took me a while to actually *feel* it.
 
-NRR is the single most important commercial health metric in enterprise SaaS. A NRR above 110% means your existing customers are expanding faster than any churn — which means your product is creating enough value to justify growth.
+- **Output = what we built**
+- **Outcome = what changed because of it**
 
-## Designing a North Star Metric
+Outputs are easy to see. Features, releases, tickets.  
+Outcomes are harder. Behavior change, efficiency, fewer mistakes.
 
-Every team should have one North Star — a single metric that reflects core value creation and correlates strongly with business health.
+One example I personally went through:
 
-For a container shipping booking platform, a strong North Star might be:
+- We improved booking UX → output  
+- Booking completion rate increased → outcome  
+- But standby bookings also increased → side effect  
+- Ops workload increased → unintended outcome  
+
+So now I try (keyword: *try*) to think in this chain:
+
+> Feature → Adoption → Behavior change → Business impact
+
+
+But honestly, in real life, this chain is messy and not always clear.
+
+---
+
+## Container Shipping Makes This Even Harder
+
+In most product blogs, metrics look clean and structured.
+
+In container shipping… everything is connected.
+
+### Booking
+
+At first, I thought:
+
+> “Booking completion rate = good KPI.”
+
+Then I started noticing:
+
+- High completion doesn’t mean clean bookings  
+- Doesn’t reflect downstream ops effort  
+- Doesn’t capture bad data or workaround behaviors  
+
+So now I *try* to look at a combination instead:
+
+- Completion rate  
+- Error rate  
+- Time-to-book  
+- Manual intervention rate  
+
+Still feels incomplete, but at least less naive than before.
+
+---
+
+### Documentation
+
+This one humbled me fast.
+
+I assumed:
+
+> “If documents are submitted, we’re fine.”
+
+Then I learned:
+
+- Submission ≠ usable  
+- Small errors = real operational cost  
+
+Metrics I didn’t even know existed before:
+
+- First-pass acceptance rate  
+- Document error rate  
+- Late submission rate  
+
+Now it makes sense — because in this domain, mistakes don’t just affect UX. They affect real shipments.
+
+---
+
+### Visibility
+
+This one is tricky in a different way.
+
+You can easily say:
+
+- “We track X shipments”
+
+Sounds impressive.
+
+But then you ask:
+
+- Are milestones actually complete?  
+- Is ETA accurate?  
+- Is data synchronized across systems?  
+
+A dashboard can look “full” but still be misleading.
+
+That’s something I’m still trying to get better at spotting.
+
+---
+
+## The “North Star” Problem (Still Figuring This Out)
+
+Everyone talks about North Star metrics like it’s obvious.
+
+It wasn’t obvious to me.
+
+At first I thought:
+
+> “Just pick something tied to revenue.”
+
+Now I’m experimenting with something like:
 
 > **Shipments Successfully Completed Per Month**
 
-This captures volume (growth), successful transactions (quality), and implicitly penalises booking errors or workflow breakdowns that cause shipment failures. It's meaningful to both operators and executives.
+I like it because:
 
-Criteria for a good North Star in this domain:
-- It goes up when you're adding value to customers
-- It is directionally correlated with revenue or retention
-- Operations teams can influence it through their daily work
-- It isn't gameable by a single team in isolation
+- It combines volume + quality  
+- Harder to game  
+- Ops teams actually care  
 
-Avoid North Stars that are pure vanity (monthly active users without engagement depth) or pure business (ARR without a product driver). The best North Star sits at the intersection of product usage and commercial value.
+But I’m not fully confident yet.
 
-## Instrumentation Before Measurement
-
-You can't measure what you haven't instrumented.
-
-In enterprise B2B logistics platforms, instrumentation is often patchy — particularly in legacy systems where booking flows cross multiple services or where key workflow steps happen outside the platform (via email or phone). Before committing to a KPI, answer:
-
-1. **Is this event tracked?** If the metric relies on an event that isn't currently logged, you need to build the instrumentation first.
-2. **Is the data trustworthy?** EDI feeds, carrier APIs, and port systems all have data quality issues. Know the error rate of your upstream data before publishing metrics that depend on it.
-3. **Can you segment it?** A global metric is often too noisy to act on. You need to slice by trade lane, customer segment, carrier, or document type to find actionable signals.
-
-Build instrumentation into your acceptance criteria. A feature that ships without tracking is a feature you can't learn from.
-
-## Dashboard Design for Enterprise Buyers
-
-Enterprise buyers expect dashboards. The design question is: dashboards for whom?
-
-**Operations dashboards** (for daily users): High density, real-time, exception-focused. Shows what needs attention now. Filters by vessel, trade lane, booking date range. Designed for the person who opens it 10 times a day.
-
-**Management dashboards** (for team leads): Weekly/monthly trends. Volume, error rates, SLA adherence. Designed for the person running a Monday morning review.
-
-**Executive dashboards** (for buyers and C-level): Quarterly rollup. Cost savings, efficiency gains, NPS trend, contract utilisation. Designed for QBR presentations and renewal conversations.
-
-Most product teams build one dashboard that satisfies none of these audiences. Design explicitly for each persona and their specific decision context.
-
-## A Word on Vanity Metrics
-
-In logistics, vanity metrics are particularly dangerous because they can look impressive while masking real problems.
-
-- **Total shipments tracked** sounds good. But if 40% have zero milestone data because the carrier feed is broken, the number is meaningless.
-- **Platform login rate** sounds like engagement. But in a B2B context, daily logins may indicate a poor API experience that's forcing manual workarounds — not healthy usage.
-- **Features released per quarter** is an output, not an outcome. It can go up while product quality and customer satisfaction go down.
-
-Challenge every metric in your review: *What behaviour does this incentivise? What could go up while the underlying situation gets worse?*
+Feels like one of those things you only understand after getting it wrong a few times.
 
 ---
 
-Good metrics are not the output of a metrics workshop — they're a living system that evolves as your product matures. Start with the outcomes that matter to customers and work backwards to the measurements that proxy them.
+## Something I Completely Underestimated: Instrumentation
 
-In container shipping, the outcomes that matter are fast bookings, clean documents, accurate visibility, and customer operations that run without incidents. Build a metric stack that tells you, honestly, whether you're delivering those — and you'll have a tool that's worth more than any feature on your roadmap.
+This one is painful to admit.
+
+I used to define KPIs in slides without checking if we could actually track them.
+
+Then engineering asks:
+
+> “Where does this data come from?”
+
+…and I don’t have a clear answer.
+
+Now I’m learning to ask earlier:
+
+- Is this event tracked?  
+- Is the data reliable?  
+- Can we segment it?  
+
+Especially in shipping systems, where data comes from:
+
+- Internal systems  
+- Carrier APIs  
+- EDI feeds  
+- Sometimes emails  
+
+“Just measure it” is not a real plan.
+
+---
+
+## Dashboards: I Thought One Was Enough
+
+Another wrong assumption.
+
+I thought:
+
+> “Let’s build one dashboard for everyone.”
+
+Turns out:
+
+- Ops want real-time and actionable  
+- Managers want trends  
+- Executives want summary  
+
+Mix everything together… and nobody is happy.
+
+Still figuring out how to balance this without overcomplicating things.
+
+---
+
+## Vanity Metrics (Yeah… I Fell Into This Too)
+
+Some metrics look good but don’t mean much.
+
+I’ve personally been excited about:
+
+- Total shipments tracked  
+- Platform logins  
+- Features released  
+
+Now I’m more skeptical.
+
+Because:
+
+- More logins might mean worse UX  
+- More tracked shipments might hide bad data  
+- More features might just mean more complexity  
+
+So now I try to ask:
+
+> “What behavior does this metric actually encourage?”
+
+Not always easy to answer.
+
+---
+
+## Where I’m At Right Now
+
+I don’t think I’ve figured out KPI design.
+
+If anything, I just moved from:
+
+> “Metrics are simple”
+
+to
+
+> “Metrics are easy to get wrong”
+
+What I’m starting to believe:
+
+- Metrics should reflect real workflow outcomes  
+- One metric is never enough  
+- Data quality matters more than dashboards  
+- If everything looks good, something is probably missing  
+
+And maybe most importantly:
+
+I should be a bit less confident when defining KPIs.
+
+---
+
+If you’re also early in this, you’re not alone.
+
+I’m still learning this step by step — mostly by realizing what I misunderstood before.

@@ -1,117 +1,303 @@
 ---
-title: "Stakeholder Management for Container Shipping Customer-Facing Products"
-date: 2026-04-08
+title: "Stakeholder Management in Container Shipping: What It Actually Means When You're Between Executives and Multiple Vendors"
+date: 2026-03-13
 category: management
 tags: stakeholder management, enterprise, product management, container shipping
-excerpt: Building customer-facing products in enterprise container shipping means navigating engineers, ops, and business stakeholders with different incentives. Here's how to build the soft-power skills that make plans stick.
+excerpt: Stakeholder management sounds simple until you're balancing executives, ops teams, and multiple vendors at once. Here's what it actually looks like in carrier-side product teams.
 readTime: 8
-image: /images/blog/stakeholder-management-container-shipping/cover.svg
-published: false
+image: /images/blog/stakeholder-management-container-shipping/cover.png
+published: true
 ---
 
-Most product management frameworks treat stakeholder management as a communication exercise. Send the right update to the right person at the right cadence, and you're done.
+Most stakeholder management advice sounds like this:
 
-In enterprise B2B container shipping, that's a starting point, not a strategy.
+- Communicate clearly  
+- Keep stakeholders informed  
+- Align expectations  
 
-You are building customer-facing products in an environment where the commercial stakes are high, the technical constraints are non-trivial, and the stakeholders — engineers, operations teams, commercial leads, and enterprise customers — each have legitimate but often conflicting interests. Getting plans to stick in this environment requires more than good communication. It requires understanding how influence actually works across these groups.
+That works — until you step into a real container shipping environment.
 
-## Know Your Stakeholder Map Before You Need It
+Because here, you're not managing “stakeholders.”
 
-The worst time to map your stakeholders is when you're in a conflict.
+You're balancing:
+- Executives committing features to customers
+- Multiple vendors building different parts of the system
+- Operations teams carrying the operational risk
+- Internal teams working on parallel products in the same ecosystem
 
-Build your map at the start of every significant initiative. For a container shipping customer-facing product, it typically includes:
+At that point, stakeholder management stops being a communication exercise.
 
-**Engineering:**
-- Backend engineers managing carrier API integrations
-- Frontend teams owning the booking or visibility UI
-- Platform/infra teams who own deployment, reliability, and data pipelines
-- Tech leads or architects who set the technical direction
-
-**Operations:**
-- Freight coordinators and booking agents (power users)
-- Customer success managers (front-line for customer feedback and escalations)
-- Operations leads who set process standards and sign off on workflow changes
-
-**Commercial/Business:**
-- Sales and account management (live or die by customer commitment dates)
-- Product marketing (responsible for positioning and customer-facing messaging)
-- Commercial leadership (care about revenue impact, competitive differentiation, contract terms)
-
-**Enterprise customers (external stakeholders):**
-- Logistics managers and IT leads (make integration decisions)
-- Operations users (daily users, first to feel friction)
-- C-level buyers (care about ROI, not features)
-
-For each group, answer three questions: What do they care about most? What is their biggest fear? Who influences them?
-
-## The Engineering Relationship
-
-The most common friction point in logistics product development is between product and engineering — specifically around scope, timelines, and technical debt.
-
-In container shipping, this friction is amplified because integration work is genuinely difficult. Carrier APIs are inconsistent, poorly documented, and change without notice. EDI standards are decades old. Port system connectivity is unreliable. When engineers say something is harder than it looks, they are usually right.
-
-**What works:**
-
-*Bring engineers into discovery early.* Not after you've written the spec — during it. When an engineer understands why a feature matters for a customer workflow, their estimation is better and their commitment to the solution is stronger. They're solving a problem they understand, not implementing a spec they were handed.
-
-*Trade-off transparency.* When you're holding a deadline, say so explicitly and ask what the engineering trade-offs are. "We have a customer go-live on the 15th — what would it take to hit that date, and what are we compromising?" gives engineers the information to make a real decision. "Can you just make it happen?" creates resentment and technical debt.
-
-*Protect the backlog.* Engineers need predictability. Constant reprioritisation signals that the product team doesn't have a clear direction, which erodes trust. If the roadmap changes, explain why — and acknowledge the cost of the disruption.
-
-## The Operations Relationship
-
-Ops stakeholders — freight coordinators, booking agents, customer success — are your most important product feedback channel. They see every workflow failure, every customer complaint, and every workaround that's been running in the background for six months.
-
-They are also the most likely group to be excluded from product decisions until a feature is already built.
-
-**What works:**
-
-*Regular ops reviews.* A bi-weekly or monthly session where ops leads walk you through what's breaking, what customers are complaining about, and what workarounds have appeared. Not a roadmap update meeting — a listening session. You're there to learn, not to present.
-
-*Pair design sessions.* Before finalising a workflow design, sit with a freight coordinator and watch them try to complete the task with your prototype. Not a formal UAT — an informal pairing session where you're observing their mental model. Ops users will find problems in 10 minutes that your team missed in a week of internal review.
-
-*Respect the burden of change.* Ops teams carry the operational risk of every new feature. When you launch something that's 80% ready, they absorb the 20% that's broken — through extra clicks, manual workarounds, and escalation calls. Acknowledge this cost explicitly, and don't launch to them without a clear escalation path and a committed remediation timeline.
-
-## The Commercial Relationship
-
-Commercial stakeholders — sales, account management, commercial leadership — move at a different pace than product teams.
-
-They're working against quarterly targets, managing customer expectations set in proposals, and navigating renewal conversations that depend on feature commitments you made three months ago. When a feature slips, they feel it immediately.
-
-**What works:**
-
-*A shared commercial calendar.* Understand which customers have committed to what features as part of their contract, and when those commitments are due. This isn't about letting commercial dictate the roadmap — it's about having the information you need to make prioritisation decisions with full context.
-
-*Differentiate between committed and planned.* Be explicit with commercial about what's in the roadmap vs. what's committed. A feature that's "likely Q3" should not appear in a customer proposal as "available Q3." Establish this distinction as a team norm before it becomes an incident.
-
-*Create a commercial escalation path.* When a customer requests a feature urgently or a deal depends on a capability gap, commercial needs a clear, lightweight channel to surface this to product — without it becoming a Slack fire drill. A weekly commercial intake slot, even 30 minutes, creates the structure for these requests to be handled seriously rather than shouted through.
-
-## Navigating the Enterprise Customer
-
-Enterprise customers in container shipping are operationally complex and commercially significant. A single customer might represent 10–20% of your platform's volume. The relationship is managed by an account manager, but shaped by your product.
-
-**What works:**
-
-*Separate the user voice from the buyer voice.* In enterprise customer feedback, the person who attends your QBR and the person who uses your platform daily are different people with different problems. A buyer who says "we're happy with the platform" may not know that their ops team has been routing around a broken integration for three weeks. Get access to both.
-
-*Manage feature requests as hypotheses.* Enterprise customers will ask for specific features. Resist the impulse to build exactly what they ask for. Dig into the underlying problem: "What workflow is this solving? What does success look like for your ops team?" Often the requested feature is a reasonable solution to a problem you can solve better another way — one that serves your full customer base, not just one account.
-
-*Give advance notice on breaking changes.* In enterprise B2B, any change to an API, an integration, or a core workflow requires coordination on the customer's side. Build a 6-week minimum notice period into your release process for any change that could require customer action. This is not optional. A surprise breaking change to an enterprise customer is a contract conversation.
-
-## Trade-Off Facilitation
-
-The highest-leverage stakeholder management skill is the ability to surface trade-offs explicitly and facilitate a decision.
-
-Most conflicts between engineering, ops, and commercial are not really about who is right. They're about different information, different time horizons, and different risk tolerances. Your job is to make the trade-off visible and get the right people in the room to own the decision.
-
-"We can ship to the original date, but the carrier fallback logic won't be in. That means manual intervention for roughly 5% of bookings, which ops estimates is about 30–40 bookings a week. Or we slip two weeks and ship the complete version. Which risk would you rather take?"
-
-That's not a product decision. That's a business decision that needs commercial, ops, and engineering aligned. Your job was to frame it clearly enough that the decision could be made.
+It becomes **how you keep a fragmented system from falling apart.**
 
 ---
 
-Stakeholder management in enterprise logistics is not about being liked or being diplomatic. It's about building enough trust with each group that when trade-offs need to be made, the right people show up, share real information, and make decisions together.
+## Why Stakeholder Management Actually Matters
 
-That trust is built slowly, through follow-through, honest communication, and visible respect for what each group is managing. It can't be rushed, and it can't be faked.
+At a high level, the idea is simple:
 
-Build it early. You'll need it when things get hard.
+> The people who have the most impact on your product  
+> will also determine whether your product succeeds or fails.
+
+But in practice, it’s not about “maintaining good relationships.”
+
+It’s about:
+- Understanding what each group *really* wants
+- Managing what they expect will happen
+- And making sure those expectations don’t silently conflict
+
+If you don’t do this well:
+
+- Executives overcommit  
+- Vendors under-deliver  
+- Operations absorbs the gap  
+
+And you only realize it when things break.
+
+---
+
+## A Mistake I Made (That Looked Small — Until It Wasn’t)
+
+At one point, I was acting as a Platform Product Owner, overseeing multiple booking flows on the same platform.
+
+We had a new regulation set applied to **Contract Booking** — required updates in validation rules, data structure, and compliance handling.
+
+The assumption I made:
+
+> “This only affects Contract Booking.”
+
+So we:
+- Delivered the change within that flow  
+- Aligned with the responsible vendor  
+- Got business sign-off  
+
+And moved on.
+
+What I didn’t fully account for:
+
+**Spot Booking was running on a separate logic path — but sharing the same platform-level data model.**
+
+No one explicitly raised it:
+- Vendors focused on their scoped delivery  
+- Business focused on the Contract flow  
+- No one owned the *cross-flow consistency*  
+
+Result:
+
+- Contract bookings followed the new regulation  
+- Spot bookings continued using the old logic  
+- Data became inconsistent across booking types  
+
+From a system perspective:
+→ Same platform  
+→ Same customer  
+→ Same shipment context  
+
+But:
+→ Different rules applied depending on booking type  
+
+It didn’t break immediately.
+
+But when it surfaced:
+- Operations had to manually reconcile differences  
+- Business started questioning data reliability  
+- And we had to fix it **after release**, across multiple vendors  
+
+---
+
+## What Actually Went Wrong
+
+It wasn’t a technical issue.
+
+It was a stakeholder management failure.
+
+Specifically:
+
+- I scoped the problem at **feature level**, not platform level  
+- I aligned with **direct stakeholders**, not the full ecosystem  
+- I didn’t validate **shared data impact across flows**  
+
+In short:
+
+> I managed stakeholders within a boundary  
+> instead of managing the system as a whole  
+
+---
+
+## Who You’re Actually Managing (Not Just “Stakeholders”)
+
+In theory, stakeholders are just roles.
+
+In reality, they are **different sources of pressure**.
+
+### Your Core Delivery Layer
+- Developers  
+- UI/UX Designers  
+- Scrum Master / Delivery Manager  
+- Technical Architect  
+- Product Owners / Domain Product Leads  
+
+---
+
+### The Vendor Layer (Where Most Problems Hide)
+- Frontend vendor  
+- Backend/API vendor  
+- Infrastructure/platform vendor  
+- Business integration / EDI vendor  
+
+Each vendor:
+- Optimizes for their scope  
+- Has limited visibility into the full product  
+- Will not naturally take responsibility outside their boundary  
+
+Your system doesn’t break inside a vendor.
+
+It breaks **between vendors**.
+
+---
+
+### The Business Layer
+- Regional business stakeholders  
+- Commercial / sales teams  
+- Senior leadership / executives  
+
+---
+
+### The Ecosystem Layer
+- Pricing team  
+- Finance team  
+- Payment systems  
+- Other internal platforms  
+
+This is where my mistake lived.
+
+Because the issue wasn’t inside one feature.
+
+It was across the ecosystem.
+
+---
+
+## The Reality: You Don’t Control Delivery
+
+As a PM in this setup:
+- You don’t control vendor capacity  
+- You don’t control executive commitments  
+- You don’t control all dependencies  
+
+So what do you actually control?
+
+> You control **alignment and expectations**
+
+And more importantly:
+
+> You define **where alignment needs to happen**
+
+Miss that — and no one else will catch it.
+
+---
+
+## What “Managing Stakeholders” Actually Looks Like
+
+### 1. Put Yourself in Their Shoes (But Don’t Stop There)
+
+Ask:
+- Why are they pushing?  
+- What risk are they trying to avoid?  
+
+But also ask:
+
+> “Who is *not* in this conversation that should be?”
+
+That’s where problems hide.
+
+---
+
+### 2. Decide What You Need From Each Stakeholder
+
+Not everyone needs the same level of involvement.
+
+But for **platform-level changes**:
+
+If you treat it like a feature-level change  
+→ You will miss cross-impact  
+
+---
+
+### 3. Manage Expectations — Across Boundaries
+
+Not just:
+- Business expectation  
+- Vendor expectation  
+
+But also:
+
+> System expectation
+
+Example:
+- “If Contract Booking changes, what happens to Spot Booking?”  
+- “If validation rules change, who else consumes this data?”  
+
+If you don’t ask this:
+→ You create silent inconsistencies  
+
+---
+
+### 4. Document Decisions — Especially Assumptions
+
+The most dangerous thing is not wrong decisions.
+
+It’s **unwritten assumptions**.
+
+In my case:
+- “This only affects Contract Booking”  
+→ was never challenged  
+→ because it was never explicitly documented  
+
+---
+
+### 5. Cross-Team Awareness Is Not Optional
+
+This is where the real work is.
+
+You need to constantly check:
+- What other teams are building  
+- What logic they rely on  
+- What shared components exist  
+
+Because no one else sees the full system.
+
+---
+
+## The Hard Part: Trade-Off Orchestration
+
+At some point, everything becomes a trade-off:
+
+- Speed vs completeness  
+- Business commitment vs system consistency  
+- Vendor delivery vs platform integrity  
+
+Your job is to surface it clearly:
+
+> “We can deliver Contract Booking now,  
+but Spot Booking will be inconsistent.  
+Or we align both flows and delay release.”
+
+That decision should not happen *after* production.
+
+---
+
+## Final Thought
+
+Stakeholder management is not about being friendly.
+
+It’s not about sending updates.
+
+It’s about:
+- Seeing the system beyond your immediate scope  
+- Making hidden dependencies visible  
+- And forcing alignment before things break  
+
+Because in container shipping systems:
+
+You are not managing stakeholders.
+
+You are **holding together a system where no one owns the full picture.**
