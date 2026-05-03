@@ -5,7 +5,7 @@ category: product
 tags: product management, container shipping, carrier systems, logistics
 excerpt: How product development actually works when building carrier-side systems — beyond simplified frameworks — across complex system interactions, trade-offs, and real-world mistakes.
 readTime: 9
-image: /images/blog/product-dev-lifecycle-logistics/cover.png
+image: /images/blog/product-dev-lifecycle-logistics/cover.webp
 published: true
 ---
 

@@ -5,7 +5,7 @@ category: management
 tags: documentation, AI, product management, stakeholder management
 excerpt: Most PMs don't struggle with writing docs — they struggle with keeping information consistent across meetings, teams, and releases. AI makes this worse. Here's how I manage it.
 readTime: 7
-image: /images/blog/document-management-ai-era/cover.png
+image: /images/blog/document-management-ai-era/cover.webp
 published: true
 ---
 

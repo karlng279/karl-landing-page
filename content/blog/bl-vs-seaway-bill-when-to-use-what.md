@@ -5,7 +5,7 @@ category: container-shipping
 tags: Documentation, B/L, Trade Finance, Product Design
 excerpt: I once explained B/L vs. Seaway Bill incorrectly to my team — and they confidently repeated it in a stakeholder demo full of shipping experts. Here's what actually went wrong (and what I learned as a PM).
 readTime: 6
-image: /images/blog/bl-vs-seaway-bill-when-to-use-what/cover.png
+image: /images/blog/bl-vs-seaway-bill-when-to-use-what/cover.webp
 published: true
 ---
 

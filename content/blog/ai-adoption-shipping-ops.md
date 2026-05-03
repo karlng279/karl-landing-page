@@ -5,7 +5,7 @@ category: ai-adoption
 tags: AI, Product Management, Container Shipping
 excerpt: AI adoption in container shipping software is not about fancy demos. It is about helping documentation, booking, BA, and software teams reduce manual friction in real workflows.
 readTime: 6
-image: /images/blog/ai-adoption-shipping-ops/cover.png
+image: /images/blog/ai-adoption-shipping-ops/cover.webp
 published: true
 ---
 
