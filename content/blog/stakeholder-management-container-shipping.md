@@ -5,7 +5,7 @@ category: management
 tags: stakeholder management, enterprise, product management, container shipping
 excerpt: Stakeholder management sounds simple until you're balancing executives, ops teams, and multiple vendors at once. Here's what it actually looks like in carrier-side product teams.
 readTime: 8
-image: /images/blog/stakeholder-management-container-shipping/cover.png
+image: /images/blog/stakeholder-management-container-shipping/cover.webp
 published: true
 ---
 

@@ -5,7 +5,7 @@ category: product
 tags: KPI, metrics, product analytics, container shipping, enterprise
 excerpt: I used to think KPIs were just numbers you put on a dashboard. Turns out... it's way more confusing than that.
 readTime: 9
-image: /images/blog/kpi-success-metrics-container-shipping/cover.png
+image: /images/blog/kpi-success-metrics-container-shipping/cover.webp
 published: true
 ---
 

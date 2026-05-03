@@ -5,7 +5,7 @@ category: container-shipping
 tags: Visibility, Tracking, Operations
 excerpt: Inside a carrier, shipment visibility doesn’t always break — but when it does, it exposes a deeper issue which departments operating on slightly different versions of the same shipment.
 readTime: 4
-image: /images/blog/shipment-visibility-gap/cover.png
+image: /images/blog/shipment-visibility-gap/cover.webp
 published: true
 ---
 

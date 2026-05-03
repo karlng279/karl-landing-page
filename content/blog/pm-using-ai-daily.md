@@ -6,7 +6,7 @@ tags: AI, Product Management, Builder PM, Systems
 excerpt: Not just writing specs — how I go from messy logistics problems to structured systems, working prototypes, and production-ready thinking.
 readTime: 10
 pinned: true
-image: /images/blog/pm-using-ai-daily/cover.png
+image: /images/blog/pm-using-ai-daily/cover.webp
 ---
 
 ## 5:10 PM — The Moment Specs Usually Die
