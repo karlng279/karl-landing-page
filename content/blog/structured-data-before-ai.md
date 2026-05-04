@@ -1,55 +1,153 @@
 ---
-title: "You Can't Build AI on Spreadsheets: The Structured Data Problem"
-date: 2026-03-24
+title: "We Tried to Build AI on Messy Data — It Didn’t Work"
+date: 2026-05-04
 category: ai-adoption
 tags: AI, Data, Product Strategy
-excerpt: Every logistics team I talk to wants AI features. Almost none of them have the structured data to support them. Here's the gap no one talks about.
-readTime: 4
-image: /images/blog/structured-data-before-ai/cover.svg
-published: false
+excerpt: We wanted AI in our shipping platform — document automation, smarter booking decisions, faster ops. What we actually learned is our data wasn’t ready, and that broke everything.
+readTime: 5
+image: /images/blog/structured-data-before-ai/cover.webp
+published: true
 ---
 
-## The AI Wishlist Is Real. The Foundation Usually Isn't.
+## We Didn't Start With AI. We Started With a Problem.
 
-In almost every product conversation I've had with logistics teams over the past two years, AI comes up early. Smarter rate suggestions. Automated document checks. Predictive exception handling.
+At one point, my team and I were pretty convinced we were ready for AI.
 
-The ambition is legitimate. The data infrastructure to support it often isn't there.
+We had clear use cases:
+- Auto-checking shipping documents  
+- Suggesting required documents based on booking data  
+- Helping ops quickly answer “why is this booking stuck?”  
 
-## What "Structured Data" Actually Means in Practice
+All very real problems. All very painful in daily operations.
 
-Structured data isn't just data in a database. It means data that is:
+So naturally, the next step felt obvious: build something “AI-powered” to solve them.
 
-- **Typed** — fields have consistent formats. A date is always a date. A port code is always a port code, not sometimes "CNSHA" and sometimes "Shanghai (CN)".
-- **Validated** — there are rules that catch bad entries before they propagate.
-- **Relational** — records link to each other in meaningful ways. A booking links to a vessel, which links to a route, which links to port events.
+That’s where things started to break.
 
-Most logistics operations have data that lives in spreadsheets, email threads, and disconnected TMS fields. That's not structured data — it's captured information with no guarantee of consistency.
+## The First Reality Check: Our Data Was All Over the Place
 
-## Why This Kills AI Projects
+On paper, we had everything:
+- Booking data in the system  
+- Document data in shared drives  
+- Status updates across multiple internal tools  
 
-LLMs and ML models can do impressive things, but they have limits:
+In reality:
+- The same port showed up as `CNSHA`, `Shanghai`, and sometimes just “SH”  
+- Document types were free-text in some places, dropdowns in others  
+- Key fields like “booking status” or “exception reason” were either missing or inconsistently used  
 
-- A model trained on inconsistent data learns inconsistency.
-- A retrieval system built on unstructured fields returns noise.
-- A classifier that can't distinguish "CNSHA" from "Shanghai" fails at the first port lookup.
+From a PM perspective, this is where I messed up.
 
-I've seen teams spend six months building an AI-powered exception handler, only to discover that their underlying exception data was so inconsistently coded that the model couldn't learn useful patterns from it.
+I assumed “we have data” = “we can use AI”.
 
-## The Unsexy First Step
+That assumption is just wrong.
 
-Before building any AI feature, run this audit on your core data entities:
+## What Structured Data Actually Means (The Hard Way)
 
-1. Pick the 5 most important fields your AI will rely on.
-2. Check the fill rate: how often are they populated?
-3. Check the consistency: are the values clean and typed correctly?
-4. Check the coverage: do they exist for the full history you plan to train on?
+I used to think structured data meant “it’s in the database”.
 
-If the fill rate is below 80% or consistency is weak, fix that first. This is unglamorous work. It involves data cleanup scripts, validation rules, and conversations with ops teams about how they enter data.
+What I learned is — that’s not even close.
 
-But it's the only foundation that works.
+For data to be usable (not just for AI, but for anything reliable), it needs to be:
 
-## What Comes After
+- **Consistent**  
+  Same concept → same format, everywhere.  
+  Not 5 ways to represent the same port or document type.
 
-Once you have clean, structured data — even on a narrow slice of your operations — AI tools become dramatically more useful. Not because the AI got smarter, but because it finally has reliable signal to work with.
+- **Controlled**  
+  Clear input rules. Dropdowns, validation, constraints.  
+  Not free-text fields where ops teams improvise.
 
-The teams building AI features that stick in logistics almost universally did this work first. The teams building demos that never reach production usually skipped it.
+- **Connected**  
+  Booking ↔ shipment ↔ documents ↔ events.  
+  Not isolated records living in different systems.
+
+Most carrier-side systems (including ours at some point) fail at least one of these.
+
+Usually more than one.
+
+## Why Our AI Attempt Failed
+
+We actually tried to build a document-related AI feature.
+
+The idea was simple:
+> Given a booking, list required documents and pre-fill them using existing data.
+
+Sounds straightforward.
+
+What actually happened:
+- Missing fields → AI had nothing to pre-fill  
+- Inconsistent naming → mapping logic kept breaking  
+- Document requirements not standardized → no reliable rule base  
+
+So instead of “AI making things faster”, we got:
+- More edge cases  
+- More manual overrides  
+- More confusion from ops  
+
+At some point, it became obvious:
+We weren’t building AI.  
+We were building workarounds on top of messy data.
+
+## The Uncomfortable Truth (Especially for PMs)
+
+This is the part most teams — including mine — try to skip.
+
+Cleaning data is:
+- Not visible to stakeholders  
+- Hard to measure in short-term KPIs  
+- Painful to push onto operations teams  
+
+But without it, everything downstream becomes fragile.
+
+Even worse:
+You can still ship something that *looks* like AI.
+
+It demos well.  
+It impresses in meetings.  
+And then it quietly fails in real operations.
+
+## What I’d Do Differently Now
+
+If I had to restart that initiative today, I wouldn’t start with AI at all.
+
+I’d start with a very boring scope:
+
+**Pick 1 flow. 1 entity. 1 problem.**
+
+For example:
+- Booking → required documents  
+
+Then:
+1. Define standard document types (no free text)  
+2. Enforce input validation at source  
+3. Backfill critical fields for recent data  
+4. Make relationships explicit (booking ↔ doc requirements)  
+
+Only after that, I’d even consider adding AI on top.
+
+Not because AI is hard —  
+but because bad data makes everything unpredictable.
+
+## What Actually Changes When Data Is Clean
+
+This is the interesting part.
+
+When you finally get structured data right (even partially):
+- Simple rules already solve 50% of the problem  
+- AI becomes a *multiplier*, not a crutch  
+- Ops teams trust the system more  
+
+The irony is:
+The “AI magic” people expect usually comes from fixing fundamentals first.
+
+## Final Thought
+
+If you're working on AI in logistics (especially on the carrier side), ask this before anything else:
+
+> “If I remove AI completely, does my data still make sense?”
+
+If the answer is no —  
+adding AI won’t fix it.
+
+It will just make the problem harder to see.
