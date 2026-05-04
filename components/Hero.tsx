@@ -11,13 +11,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-400/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent-400/20 rounded-full blur-3xl animate-float animation-delay-300" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary-400/10 to-accent-400/10 rounded-full blur-3xl" />
-      </div>
-
       {/* Grid pattern overlay */}
       <div
         className="absolute right-0 bottom-0 opacity-[0.02] dark:opacity-[0.05]"
@@ -105,7 +98,7 @@ export default function Hero() {
             </a>
             <a
               href="#connect"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-600 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-600 hover:border-primary-400 dark:hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300"
             >
               <svg
                 className="w-5 h-5"
