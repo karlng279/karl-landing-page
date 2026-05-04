@@ -116,7 +116,7 @@ export default function Connect() {
           {/* Email CTA */}
           <div className="mb-8">
             <a
-              href="mailto:huynh27.work@gmail.com,karl@vxsolutions.tech"
+              href="mailto:huynh27.work@gmail.com"
               className="btn-primary text-lg"
             >
               <svg
