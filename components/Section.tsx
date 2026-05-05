@@ -70,7 +70,7 @@ export default function Section({
             )}
             {subtitle && (
               <p
-                className={`text-lg ${
+                className={`text-lg lg:text-xl ${
                   dark
                     ? "text-slate-300"
                     : "text-slate-600 dark:text-slate-400"

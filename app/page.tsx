@@ -326,17 +326,17 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Enterprise Product Work Section */}
+      {/* Product Work Section */}
       <Section
-        id="enterprise-work"
-        title="Enterprise Product Work"
-        subtitle="High-level descriptions from work on a global ocean carrier eCommerce platform"
+        id="product-work"
+        title="Product Work"
+        subtitle="Spanning enterprise-scale product work at a global ocean carrier and hands-on product building for SMEs in shipping and logistics."
         className="bg-slate-50/50 dark:bg-slate-900/30"
       >
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {enterpriseProjects.map((project, index) => (
             <ProjectCard
-              key={index}
+              key={`enterprise-${index}`}
               title={project.title}
               context={project.context}
               description={project.description}
@@ -344,19 +344,9 @@ export default function Home() {
               isEnterprise={project.isEnterprise}
             />
           ))}
-        </div>
-      </Section>
-
-      {/* VX Solutions Projects Section */}
-      <Section
-        id="vx-projects"
-        title="Product Work at VX Solutions"
-        subtitle="Execution-focused product work validating real logistics problems through hands-on building and iteration."
-      >
-        <div className="grid md:grid-cols-2 gap-6">
           {vxProjects.map((project, index) => (
             <ProjectCard
-              key={index}
+              key={`vx-${index}`}
               title={project.title}
               context={project.context}
               description={project.description}

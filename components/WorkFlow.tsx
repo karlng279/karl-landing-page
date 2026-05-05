@@ -135,10 +135,10 @@ export default function WorkFlow() {
                         <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">
                           {step.title}
                         </h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                        <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mb-3">
                           {step.description}
                         </p>
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs lg:text-sm">
                           <svg
                             className="w-3.5 h-3.5"
                             fill="none"
