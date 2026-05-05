@@ -33,7 +33,7 @@ export default function WorkCard({
           {items.map((item, index) => (
             <li
               key={index}
-              className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
+              className="flex items-start gap-2 text-sm lg:text-base text-slate-600 dark:text-slate-400"
             >
               <svg
                 className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0"

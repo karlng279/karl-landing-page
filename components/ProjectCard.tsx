@@ -76,34 +76,34 @@ export default function ProjectCard({
 
       {/* Problem */}
       <div className="mb-4">
-        <span className="text-xs font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
           Problem
         </span>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+        <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
           {context}
         </p>
       </div>
 
       {/* Solution */}
       <div className="mb-4">
-        <span className="text-xs font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
           Solution
         </span>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+        <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
           {description}
         </p>
       </div>
 
       {/* Impact */}
       <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700">
-        <span className="text-xs font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">
+        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">
           Impact
         </span>
         <ul className="mt-2 space-y-1.5">
           {impact.map((item, index) => (
             <li
               key={index}
-              className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
+              className="flex items-start gap-2 text-sm lg:text-base text-slate-600 dark:text-slate-400"
             >
               <svg
                 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0"

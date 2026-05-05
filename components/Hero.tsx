@@ -25,14 +25,14 @@ export default function Hero() {
 
       {/* Ghost cursor trail effect */}
       <GhostCursor
-        color="#38bdf8"
-        brightness={1.2}
-        trailLength={24}
+        color="#7dd3fc"
+        brightness={0.55}
+        trailLength={14}
         inertia={0.4}
-        bloomStrength={0.8}
-        bloomRadius={0.7}
+        bloomStrength={0.25}
+        bloomRadius={0.4}
         bloomThreshold={0.0}
-        grainIntensity={0.04}
+        grainIntensity={0.02}
         fadeDelayMs={600}
         fadeDurationMs={800}
         zIndex={1}
@@ -103,7 +103,7 @@ export default function Hero() {
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <a href="#enterprise-work" className="btn-primary">
+            <a href="#product-work" className="btn-primary">
               <svg
                 className="w-5 h-5"
                 fill="none"

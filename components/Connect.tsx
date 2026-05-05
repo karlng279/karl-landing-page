@@ -53,7 +53,7 @@ const socialLinks: SocialLink[] = [
     ),
   },
   {
-    name: "VX Solutions",
+    name: "My Work",
     href: "https://vxsolutions.tech/",
     color: "hover:text-primary-600 hover:border-primary-600",
     icon: (
