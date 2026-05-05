@@ -134,14 +134,14 @@ function BlogCard({ post, featured = false, pinned = false }: { post: PostMeta; 
         </h2>
 
         <p
-          className={`text-sm text-slate-500 dark:text-slate-400 leading-relaxed ${
+          className={`text-sm lg:text-base text-slate-500 dark:text-slate-400 leading-relaxed ${
             featured ? "line-clamp-4" : "line-clamp-3"
           }`}
         >
           {post.excerpt}
         </p>
 
-        <div className="flex items-center flex-wrap gap-2 mt-1 text-xs text-slate-400 dark:text-slate-500">
+        <div className="flex items-center flex-wrap gap-2 mt-1 text-xs lg:text-sm text-slate-400 dark:text-slate-500">
           <span>{formatDate(post.date)}</span>
           <span>·</span>
           <span>{post.readTime} min read</span>
