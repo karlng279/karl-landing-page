@@ -273,7 +273,7 @@ export default function Home() {
               </div>
               <div>
                 <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-1">
-                  Currently at VX Solutions
+                  Currently Building
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
                   Helping smaller businesses in Vietnam digitize exports, inventory, and
