@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { PostMeta, Category } from "@/lib/posts";
 import Connect from "@/components/Connect";
@@ -215,16 +215,20 @@ function EmptyState({ category, onReset }: { category: Category; onReset: () => 
 type Filter = "all" | Category;
 
 export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
-  const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialFilter = (): Filter => {
-    const cat = searchParams.get("category");
-    if (cat && (FILTER_ORDER as string[]).includes(cat)) return cat as Filter;
-    return "all";
-  };
+  // Default to "all" so the full post list is prerendered into the static HTML
+  // (crawlable by search engines and LLMs). We intentionally avoid
+  // useSearchParams(), which would exclude this subtree from the static export.
+  const [filter, setFilter] = useState<Filter>("all");
 
-  const [filter, setFilter] = useState<Filter>(initialFilter);
+  // Restore a ?category= deep-link after mount, without blanking the static HTML.
+  useEffect(() => {
+    const cat = new URLSearchParams(window.location.search).get("category");
+    if (cat && (FILTER_ORDER as string[]).includes(cat)) {
+      setFilter(cat as Filter);
+    }
+  }, []);
 
   const applyFilter = (id: Filter) => {
     setFilter(id);

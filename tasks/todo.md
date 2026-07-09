@@ -14,6 +14,12 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Point `AGENTS.md` at the memory files
 - [ ] Commit + push M0 to origin
 
+## Bugfix — /blog was empty to non-JS crawlers (Claude/LLMs)
+- [x] Root cause: `useSearchParams()` in `BlogClientPage` blanked the post list from static HTML (posts only in JS payload)
+- [x] Fix: default filter to "all" + read `?category=` in a post-mount `useEffect`; remove `<Suspense>` wrapper
+- [x] Verify: `out/blog.html` now has 11 post links in the DOM (was 0); titles in visible HTML
+- [ ] Deploy (merge to main) then re-fetch `/blog` to confirm live
+
 ## M1 — SEO / LLM discoverability (static stack — no backend needed)
 - [x] Fix `metadataBase` in `app/layout.tsx` → `https://karl-nguyen.com` (OG/canonical now absolute)
 - [x] Add canonical URLs (`alternates.canonical`) to `/`, `/blog`, and each post

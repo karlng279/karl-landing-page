@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import BlogClientPage from "./BlogClientPage";
@@ -23,9 +22,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <Suspense fallback={null}>
-        <BlogClientPage posts={posts} />
-      </Suspense>
+      <BlogClientPage posts={posts} />
     </>
   );
 }
