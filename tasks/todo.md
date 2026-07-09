@@ -12,15 +12,15 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Create `docs/ROADMAP.md`
 - [x] Create `docs/DECISIONS.md`
 - [x] Point `AGENTS.md` at the memory files
-- [ ] Commit + push M0 to origin
+- [x] Commit + push M0 to origin
 
-## Bugfix — /blog was empty to non-JS crawlers (Claude/LLMs)
+## Bugfix — /blog was empty to non-JS crawlers (Claude/LLMs) ✅ SHIPPED
 - [x] Root cause: `useSearchParams()` in `BlogClientPage` blanked the post list from static HTML (posts only in JS payload)
 - [x] Fix: default filter to "all" + read `?category=` in a post-mount `useEffect`; remove `<Suspense>` wrapper
 - [x] Verify: `out/blog.html` now has 11 post links in the DOM (was 0); titles in visible HTML
-- [ ] Deploy (merge to main) then re-fetch `/blog` to confirm live
+- [x] Deployed to main (2026-07-09); confirmed live: `curl https://karl-nguyen.com/blog` shows 11 post links in raw HTML
 
-## M1 — SEO / LLM discoverability (static stack — no backend needed)
+## M1 — SEO / LLM discoverability (static stack — no backend needed) ✅ SHIPPED
 - [x] Fix `metadataBase` in `app/layout.tsx` → `https://karl-nguyen.com` (OG/canonical now absolute)
 - [x] Add canonical URLs (`alternates.canonical`) to `/`, `/blog`, and each post
 - [x] Add a default OG share image (`public/images/og-default.png`, 1200x630) at root
@@ -29,8 +29,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Add JSON-LD: `Person` + `WebSite` on home; `BlogPosting` + `BreadcrumbList` on posts (`components/JsonLd.tsx`)
 - [x] Add build-time RSS + llms.txt generator (`scripts/generate-feeds.mjs`, wired via `prebuild`) → `public/rss.xml`, `public/llms.txt` (gitignored, built in CI)
 - [x] Verify: build → `out/` has sitemap/robots/rss/llms.txt; JSON-LD + absolute OG confirmed in HTML
-- [ ] Deploy on current GitHub Pages pipeline (merge to main); submit sitemap to Search Console
-- [ ] Validate JSON-LD in Google Rich Results Test; test share preview (LinkedIn/X)
+- [x] Deployed to main (2026-07-09); live-verified robots.txt (GPTBot/ClaudeBot), sitemap.xml (13 URLs), llms.txt
+- [ ] Submit sitemap to Google Search Console (manual, external)
+- [ ] Validate JSON-LD in Google Rich Results Test; test share preview (LinkedIn/X) (manual, external)
 
 ## M2 — Homepage content & structure revision (static stack)
 - [ ] Gather Karl's specific content/positioning direction (collaborative)
