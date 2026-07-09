@@ -16,6 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://karl-nguyen.com"),
   title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
   description:
     "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Delivering measurable impact across global logistics platforms.",
@@ -31,18 +32,36 @@ export const metadata: Metadata = {
     "eCommerce",
   ],
   authors: [{ name: "Karl Nguyen" }],
+  creator: "Karl Nguyen",
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: "Karl Nguyen — Blog" }],
+    },
+  },
   openGraph: {
     title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
     description:
       "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
     type: "website",
     locale: "en_US",
+    url: "https://karl-nguyen.com",
+    siteName: "Karl Nguyen",
+    images: [
+      {
+        url: "/images/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Karl Nguyen — Technical Product Manager, Container Shipping & Logistics",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
     description:
       "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
+    images: ["/images/og-default.png"],
   },
   icons: {
     icon: [

@@ -6,6 +6,38 @@ import ProjectCard from "@/components/ProjectCard";
 import Connect from "@/components/Connect";
 import OpportunitiesBanner from "@/components/OpportunitiesBanner";
 import Header from "@/components/Header";
+import JsonLd from "@/components/JsonLd";
+
+const SITE_URL = "https://karl-nguyen.com";
+
+// Structured data — makes Karl entity-discoverable to search + LLM crawlers.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Karl Nguyen",
+  url: SITE_URL,
+  image: `${SITE_URL}/images/og-default.png`,
+  jobTitle: "Technical Product Manager",
+  description:
+    "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
+  knowsAbout: [
+    "Container Shipping",
+    "Logistics Systems",
+    "Shipping Documentation",
+    "Shipment Visibility",
+    "Product Management",
+    "AI-Augmented Product Development",
+  ],
+  sameAs: ["https://www.linkedin.com/in/huynhnq94/"],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Karl Nguyen",
+  url: SITE_URL,
+  author: { "@type": "Person", name: "Karl Nguyen" },
+};
 
 // Icons for What I Work On section
 const ProductStrategyIcon = () => (
@@ -155,6 +187,8 @@ const skillsData = {
 export default function Home() {
   return (
     <>
+      <JsonLd data={personJsonLd} />
+      <JsonLd data={websiteJsonLd} />
       <Header />
       <main className="min-h-screen pt-16">
         {/* Hero Section */}

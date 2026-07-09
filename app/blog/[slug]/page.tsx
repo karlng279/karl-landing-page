@@ -5,7 +5,10 @@ import { marked } from "marked";
 import Header from "@/components/Header";
 import Connect from "@/components/Connect";
 import { getPost, getAllSlugs, type Category } from "@/lib/posts";
+import JsonLd from "@/components/JsonLd";
 import Link from "next/link";
+
+const SITE_URL = "https://karl-nguyen.com";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -18,10 +21,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = getPost(params.slug);
   if (!post) return {};
+  const url = `/blog/${post.slug}`;
+  const images = post.image ? [post.image] : ["/images/og-default.png"];
   return {
     title: `${post.title} — Karl Nguyen`,
     description: post.excerpt,
-    openGraph: post.image ? { images: [post.image] } : undefined,
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      url,
+      publishedTime: post.date,
+      authors: ["Karl Nguyen"],
+      tags: post.tags,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images,
+    },
   };
 }
 
@@ -62,9 +83,42 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   const cat = CAT_CONFIG[post.category];
   const htmlContent = marked(post.content) as string;
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/images/og-default.png`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Person", name: "Karl Nguyen", url: SITE_URL },
+    publisher: { "@type": "Person", name: "Karl Nguyen", url: SITE_URL },
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    keywords: post.tags.join(", "),
+    articleSection: cat.label,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Blog", item: `${SITE_URL}/blog` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: cat.label,
+        item: `${SITE_URL}/blog?category=${post.category}`,
+      },
+      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+    ],
+  };
 
   return (
     <>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Header />
       <main className="min-h-screen pt-24 pb-20">
         <div className="max-w-[720px] mx-auto px-6">

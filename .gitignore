@@ -16,6 +16,10 @@
 # production
 /build
 
+# generated feeds (built by scripts/generate-feeds.mjs at build time)
+/public/rss.xml
+/public/llms.txt
+
 # misc
 .DS_Store
 *.pem

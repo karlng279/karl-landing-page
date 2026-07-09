@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: "Blog — Karl Nguyen",
   description:
     "Thoughts on container shipping, logistics technology, and AI adoption in operations.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Blog — Karl Nguyen",
+    description:
+      "Thoughts on container shipping, logistics technology, and AI adoption in operations.",
+    type: "website",
+    url: "https://karl-nguyen.com/blog",
+  },
 };
 
 export default function BlogPage() {

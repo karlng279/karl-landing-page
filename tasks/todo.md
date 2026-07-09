@@ -15,16 +15,16 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] Commit + push M0 to origin
 
 ## M1 — SEO / LLM discoverability (static stack — no backend needed)
-- [ ] Fix `metadataBase` in `app/layout.tsx` → `https://karl-nguyen.com` (real bug: OG/canonical URLs resolve relative today)
-- [ ] Add canonical URLs (`alternates.canonical`) to `/`, `/blog`, and each post
-- [ ] Add a default OG share image (`public/images/og-default.*`) at root
-- [ ] Add `app/sitemap.ts` (uses `getAllSlugs` / `getAllPosts` from `lib/posts.ts`)
-- [ ] Add `app/robots.ts` — allow all + sitemap + welcome GPTBot / ClaudeBot / Google-Extended / PerplexityBot / CCBot
-- [ ] Add JSON-LD: `Person` + `WebSite` on home; `BlogPosting` + `BreadcrumbList` on posts
-- [ ] Add build-time RSS generator → `public/rss.xml`, linked in `<head>`
-- [ ] Add `public/llms.txt` (curated bio + positioning + key posts)
-- [ ] Verify: build → inspect `out/` for sitemap/robots/rss/llms.txt; validate JSON-LD; check OG resolves absolute
-- [ ] Deploy on current GitHub Pages pipeline; submit sitemap to Search Console
+- [x] Fix `metadataBase` in `app/layout.tsx` → `https://karl-nguyen.com` (OG/canonical now absolute)
+- [x] Add canonical URLs (`alternates.canonical`) to `/`, `/blog`, and each post
+- [x] Add a default OG share image (`public/images/og-default.png`, 1200x630) at root
+- [x] Add `app/sitemap.ts` (uses `getAllPosts` from `lib/posts.ts`)
+- [x] Add `app/robots.ts` — allow all + sitemap + welcome GPTBot / ClaudeBot / Google-Extended / PerplexityBot / CCBot
+- [x] Add JSON-LD: `Person` + `WebSite` on home; `BlogPosting` + `BreadcrumbList` on posts (`components/JsonLd.tsx`)
+- [x] Add build-time RSS + llms.txt generator (`scripts/generate-feeds.mjs`, wired via `prebuild`) → `public/rss.xml`, `public/llms.txt` (gitignored, built in CI)
+- [x] Verify: build → `out/` has sitemap/robots/rss/llms.txt; JSON-LD + absolute OG confirmed in HTML
+- [ ] Deploy on current GitHub Pages pipeline (merge to main); submit sitemap to Search Console
+- [ ] Validate JSON-LD in Google Rich Results Test; test share preview (LinkedIn/X)
 
 ## M2 — Homepage content & structure revision (static stack)
 - [ ] Gather Karl's specific content/positioning direction (collaborative)
