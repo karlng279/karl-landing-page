@@ -27,5 +27,10 @@ Success criteria:
 | M5 | Interaction (Giscus comments, reactions, views, share) | Vercel |
 | M6 | Polish (dynamic OG images, "most read") | Vercel |
 
+## Shipped
+- **2026-07-09** — M0 + M1 + crawler bugfix (blog was empty to non-JS crawlers).
+- **2026-07-12** — Blog restructure (spec `docs/specs/blog-restructure.md`): 3-category taxonomy, single-select filter, curated "Start Here" two-path module, honest read-times, peer CTA. Static (current stack).
+- Next up: **M2** (homepage revision) then the backend phase (M3+).
+
 ## Recommended tech (confirm at execution)
 Host: **Vercel** · Newsletter: **Buttondown** (RSS-to-email) · Comments: **Giscus** · Reactions/views: **Upstash Redis / Vercel KV** · Email (if self-send later): **Resend**.

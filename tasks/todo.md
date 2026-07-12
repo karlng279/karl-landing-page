@@ -14,17 +14,19 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Point `AGENTS.md` at the memory files
 - [x] Commit + push M0 to origin
 
-## Blog Restructure (spec: docs/specs/blog-restructure.md) — built on test/v2-foundation
+## Blog Restructure (spec: docs/specs/blog-restructure.md) ✅ SHIPPED (merged to main 2026-07-12)
 - [x] Category taxonomy → 3 (shipping-logistics ×5, product-systems ×2, ai-in-operations ×4); old topics kept as tags
 - [x] FIX-1 pinned/hero = shipment-visibility-gap (pm-using-ai-daily unpinned); not duplicated in grid
 - [x] FIX-3 category filter: single-select chips + `?category=` deep-link (crawler-safe). (Multi-select removed per author feedback 2026-07-11.)
-- [x] ADD-1 Start Here two-path module (server component, auto-derives top-3). Placed ABOVE the header/filter; "See all" links removed; typography matched to blog tokens.
+- [x] ADD-1 Start Here two-path module (server component). Placed ABOVE the header/filter; "See all" removed; typography matched to blog tokens; "Start Here" eyebrow removed
+- [x] Start Here posts curated by explicit slug per path (author-picked, not auto-derived): A = shipment-visibility-gap / kpi-success-metrics / ai-adoption-shipping-ops; B = product-dev-lifecycle-logistics / document-management-ai-era / mvp-communication-gap
 - [x] FIX-4 read-time computed at build (220 wpm) in lib/posts.ts; frontmatter numbers now ignored
 - [x] FIX-7 end-of-post CTA → single peer-to-peer "/#connect" (LinkedIn author link removed)
 - [x] FIX-5 per-post OG + FIX-6 sitemap — already shipped in M1; re-verified
 - [x] Build + static-HTML verification passed (11 crawlable links, chips, module, honest read-times)
-- [ ] Interactive spot-check in browser (chip toggle, back/forward, empty state)
-- [ ] Commit + push test/v2-foundation; merge to main to deploy
+- [x] Author reviewed in browser + gave design feedback (single-select, typography, placement, curation) — all applied
+- [x] Merged test/v2-foundation → main (2026-07-12); branch deleted local + origin
+- [ ] Post-deploy: confirm live /blog + Search Console (manual)
 
 ## Bugfix — /blog was empty to non-JS crawlers (Claude/LLMs) ✅ SHIPPED
 - [x] Root cause: `useSearchParams()` in `BlogClientPage` blanked the post list from static HTML (posts only in JS payload)
