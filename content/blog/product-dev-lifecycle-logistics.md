@@ -1,7 +1,7 @@
 ---
 title: "Product Development Life Cycle for Carrier Systems in Container Shipping"
 date: 2026-04-10
-category: product
+category: shipping-logistics
 tags: product management, container shipping, carrier systems, logistics
 excerpt: How product development actually works when building carrier-side systems — beyond simplified frameworks — across complex system interactions, trade-offs, and real-world mistakes.
 readTime: 9

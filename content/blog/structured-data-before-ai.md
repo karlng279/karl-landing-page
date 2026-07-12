@@ -1,7 +1,7 @@
 ---
 title: "We Tried to Build AI on Messy Data — It Didn’t Work"
 date: 2026-05-04
-category: ai-adoption
+category: ai-in-operations
 tags: AI, Data, Product Strategy
 excerpt: We wanted AI in our shipping platform — document automation, smarter booking decisions, faster ops. What we actually learned is our data wasn’t ready, and that broke everything.
 readTime: 5

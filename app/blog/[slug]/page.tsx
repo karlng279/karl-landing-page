@@ -47,25 +47,20 @@ export async function generateMetadata({
 }
 
 const CAT_CONFIG: Record<Category, { label: string; color: string; bg: string }> = {
-  product: {
-    label: "Product",
-    color: "#2563eb",
-    bg: "rgba(37,99,235,0.1)",
+  "shipping-logistics": {
+    label: "Shipping & Logistics",
+    color: "#0284c7",
+    bg: "rgba(2,132,199,0.1)",
   },
-  management: {
-    label: "Management",
-    color: "#16a34a",
-    bg: "rgba(22,163,74,0.1)",
+  "product-systems": {
+    label: "Product & Systems",
+    color: "#7c3aed",
+    bg: "rgba(124,58,237,0.1)",
   },
-  "ai-adoption": {
-    label: "AI Adoption",
-    color: "#dc2626",
-    bg: "rgba(220,38,38,0.1)",
-  },
-  "container-shipping": {
-    label: "Container Shipping",
-    color: "#db2777",
-    bg: "rgba(219,39,119,0.1)",
+  "ai-in-operations": {
+    label: "AI in Operations",
+    color: "#c026d3",
+    bg: "rgba(192,38,211,0.1)",
   },
 };
 
@@ -192,7 +187,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
 
-          {/* Author card */}
+          {/* End-of-post CTA (peer-to-peer, single) */}
           <div className="mt-14 p-6 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
             <div className="flex items-center gap-4">
               <Image
@@ -208,15 +203,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   Technical Product Manager · Container Shipping & AI
                 </p>
               </div>
-              <a
-                href="https://www.linkedin.com/in/huynhnq94/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-auto text-xs font-medium text-violet-600 dark:text-violet-400 hover:underline"
-              >
-                Connect
-              </a>
             </div>
+            <p className="mt-4 text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              Working on similar problems in shipping or logistics product?{" "}
+              <Link
+                href="/#connect"
+                className="font-medium text-violet-600 dark:text-violet-400 hover:underline"
+              >
+                Let&rsquo;s connect.
+              </Link>
+            </p>
           </div>
         </div>
       </main>

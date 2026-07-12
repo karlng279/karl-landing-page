@@ -1,7 +1,7 @@
 ---
 title: "AI Adoption Terms for Dummies (From a PM Explaining to Other PMs)"
 date: 2026-05-20
-category: ai-adoption
+category: ai-in-operations
 tags: AI, Product Management, Workflow
 excerpt: MCP? Plugins? Agents? RAG? Fine-tuning? Here's the simplified explanation I wish more non-technical PMs and BAs had when starting AI adoption.
 readTime: 7

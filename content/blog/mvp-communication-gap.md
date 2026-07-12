@@ -1,7 +1,7 @@
 ---
 title: "MVPs in Logistics Platforms: Full Features, Partial Understanding"
 date: 2026-03-10
-category: management
+category: product-systems
 tags: mvp, stakeholder management, release, communication, logistics
 excerpt: In enterprise logistics, MVPs are not small. They are full features released with partial understanding. That’s where the real risk lives.
 readTime: 8

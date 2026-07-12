@@ -1,7 +1,8 @@
 ---
 title: "The Shipment Visibility Gap: Why 'Tracking' Still Means Phone Calls"
 date: 2026-04-05
-category: container-shipping
+category: shipping-logistics
+pinned: true
 tags: Visibility, Tracking, Operations
 excerpt: Inside a carrier, shipment visibility doesn’t always break — but when it does, it exposes a deeper issue which departments operating on slightly different versions of the same shipment.
 readTime: 4

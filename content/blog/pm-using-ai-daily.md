@@ -1,11 +1,10 @@
 ---
 title: "From PRD to Production: How I Use AI as a PM Who Actually Ships"
 date: 2026-04-30
-category: ai-adoption
+category: ai-in-operations
 tags: AI, Product Management, Builder PM, Systems
 excerpt: Not just writing specs — how I go from messy logistics problems to structured systems, working prototypes, and production-ready thinking.
 readTime: 10
-pinned: true
 image: /images/blog/pm-using-ai-daily/cover.webp
 ---
 

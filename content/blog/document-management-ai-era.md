@@ -1,7 +1,7 @@
 ---
 title: "Document Management in the AI Era (From a PM’s Perspective)"
 date: 2026-04-15
-category: management
+category: product-systems
 tags: documentation, AI, product management, stakeholder management
 excerpt: Most PMs don't struggle with writing docs — they struggle with keeping information consistent across meetings, teams, and releases. AI makes this worse. Here's how I manage it.
 readTime: 7

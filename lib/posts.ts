@@ -4,7 +4,24 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "content/blog");
 
-export type Category = "container-shipping" | "ai-adoption" | "product" | "management";
+export type Category = "shipping-logistics" | "product-systems" | "ai-in-operations";
+
+const WORDS_PER_MINUTE = 220;
+
+// Honest read-time from the post body (FIX-4): strip code blocks, HTML tags,
+// and markdown syntax before counting words, then round to the nearest minute
+// (minimum 1). Computed at build time so it auto-maintains for new posts.
+export function computeReadTime(markdown: string): number {
+  const text = markdown
+    .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+    .replace(/`[^`]*`/g, " ") // inline code
+    .replace(/<[^>]+>/g, " ") // HTML tags
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ") // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // links → keep link text
+    .replace(/[#>*_~`|-]/g, " "); // residual markdown punctuation
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
 
 export interface PostMeta {
   slug: string;
@@ -31,7 +48,7 @@ export function getAllPosts(): PostMeta[] {
     .map((file) => {
       const slug = file.replace(/\.md$/, "");
       const raw = fs.readFileSync(path.join(postsDir, file), "utf8");
-      const { data } = matter(raw);
+      const { data, content } = matter(raw);
       const tags =
         typeof data.tags === "string"
           ? data.tags.split(",").map((t: string) => t.trim())
@@ -40,10 +57,10 @@ export function getAllPosts(): PostMeta[] {
         slug,
         title: data.title ?? "",
         date: typeof data.date === "object" ? data.date.toISOString().slice(0, 10) : String(data.date),
-        category: data.category ?? "container-shipping",
+        category: data.category ?? "shipping-logistics",
         tags,
         excerpt: data.excerpt ?? "",
-        readTime: data.readTime ?? 5,
+        readTime: computeReadTime(content),
         image: data.image ?? undefined,
         pinned: data.pinned ?? false,
         published: data.published !== false,
@@ -66,10 +83,10 @@ export function getPost(slug: string): Post | null {
     slug,
     title: data.title ?? "",
     date: typeof data.date === "object" ? data.date.toISOString().slice(0, 10) : String(data.date),
-    category: data.category ?? "container-shipping",
+    category: data.category ?? "shipping-logistics",
     tags,
     excerpt: data.excerpt ?? "",
-    readTime: data.readTime ?? 5,
+    readTime: computeReadTime(content),
     image: data.image ?? undefined,
     pinned: data.pinned ?? false,
     published: data.published !== false,

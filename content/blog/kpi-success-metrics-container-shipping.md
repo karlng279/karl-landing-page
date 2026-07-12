@@ -1,7 +1,7 @@
 ---
 title: "KPI & Success Metrics — Things I Thought I Understood (But Didn’t)"
 date: 2026-03-28
-category: product
+category: shipping-logistics
 tags: KPI, metrics, product analytics, container shipping, enterprise
 excerpt: I used to think KPIs were just numbers you put on a dashboard. Turns out... it's way more confusing than that.
 readTime: 9

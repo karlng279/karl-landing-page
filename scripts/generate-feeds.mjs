@@ -15,10 +15,9 @@ const postsDir = path.join(process.cwd(), "content/blog");
 const publicDir = path.join(process.cwd(), "public");
 
 const CATEGORY_LABELS = {
-  "container-shipping": "Container Shipping",
-  "ai-adoption": "AI Adoption",
-  product: "Product",
-  management: "Management",
+  "shipping-logistics": "Shipping & Logistics",
+  "product-systems": "Product & Systems",
+  "ai-in-operations": "AI in Operations",
 };
 
 function readPosts() {
@@ -42,7 +41,7 @@ function readPosts() {
         slug,
         title: data.title ?? "",
         date,
-        category: data.category ?? "container-shipping",
+        category: data.category ?? "shipping-logistics",
         tags,
         excerpt: data.excerpt ?? "",
         image: data.image ?? undefined,

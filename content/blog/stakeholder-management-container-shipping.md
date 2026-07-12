@@ -1,7 +1,7 @@
 ---
 title: "Stakeholder Management in Container Shipping: What It Actually Means When You're Between Executives and Multiple Vendors"
 date: 2026-03-13
-category: management
+category: shipping-logistics
 tags: stakeholder management, enterprise, product management, container shipping
 excerpt: Stakeholder management sounds simple until you're balancing executives, ops teams, and multiple vendors at once. Here's what it actually looks like in carrier-side product teams.
 readTime: 8
