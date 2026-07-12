@@ -17,8 +17,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 ## Blog Restructure (spec: docs/specs/blog-restructure.md) — built on test/v2-foundation
 - [x] Category taxonomy → 3 (shipping-logistics ×5, product-systems ×2, ai-in-operations ×4); old topics kept as tags
 - [x] FIX-1 pinned/hero = shipment-visibility-gap (pm-using-ai-daily unpinned); not duplicated in grid
-- [x] FIX-3 multi-select filter chips + comma `?category=` deep-link (crawler-safe: default All, window.location + popstate, pushState)
-- [x] ADD-1 Start Here two-path module (server component, auto-derives top-3, See-all links to 2-chip views)
+- [x] FIX-3 category filter: single-select chips + `?category=` deep-link (crawler-safe). (Multi-select removed per author feedback 2026-07-11.)
+- [x] ADD-1 Start Here two-path module (server component, auto-derives top-3). Placed ABOVE the header/filter; "See all" links removed; typography matched to blog tokens.
 - [x] FIX-4 read-time computed at build (220 wpm) in lib/posts.ts; frontmatter numbers now ignored
 - [x] FIX-7 end-of-post CTA → single peer-to-peer "/#connect" (LinkedIn author link removed)
 - [x] FIX-5 per-post OG + FIX-6 sitemap — already shipped in M1; re-verified

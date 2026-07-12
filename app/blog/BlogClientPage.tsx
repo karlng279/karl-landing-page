@@ -143,7 +143,7 @@ function EmptyState({ onReset }: { onReset: () => void }) {
         No posts in this category yet
       </h2>
       <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed mb-6">
-        Nothing matches the current filter. Try another category or browse everything.
+        Nothing here yet. Browse everything in the meantime.
       </p>
       <button
         onClick={onReset}
@@ -164,15 +164,13 @@ function EmptyState({ onReset }: { onReset: () => void }) {
   );
 }
 
-// Parse + validate the comma-separated ?category= param into a set of known slugs.
-function parseCategoriesFromUrl(): Set<Category> {
-  const raw = new URLSearchParams(window.location.search).get("category");
-  if (!raw) return new Set();
-  const valid = raw
-    .split(",")
-    .map((s) => s.trim())
-    .filter((s): s is Category => (CATEGORY_SLUGS as string[]).includes(s));
-  return new Set(valid);
+type Filter = "all" | Category;
+
+// Read a single ?category= slug from the URL (validated). Used for deep-links
+// like the post-page breadcrumb; the multi-value form was removed.
+function parseFilterFromUrl(): Filter {
+  const cat = new URLSearchParams(window.location.search).get("category");
+  return cat && (CATEGORY_SLUGS as string[]).includes(cat) ? (cat as Category) : "all";
 }
 
 export default function BlogClientPage({
@@ -182,55 +180,40 @@ export default function BlogClientPage({
   posts: PostMeta[];
   startHere?: React.ReactNode;
 }) {
-  // Empty set = "All". Default empty so the full list is prerendered into the
-  // static HTML (crawlable). We deliberately avoid useSearchParams(), which
-  // would exclude this subtree from the static export.
-  const [active, setActive] = useState<Set<Category>>(new Set());
+  // Default "all" so the full list is prerendered into the static HTML
+  // (crawlable). We deliberately avoid useSearchParams(), which would exclude
+  // this subtree from the static export.
+  const [filter, setFilter] = useState<Filter>("all");
 
   // Restore ?category= on mount and on back/forward — without blanking the HTML.
   useEffect(() => {
-    setActive(parseCategoriesFromUrl());
-    const onPop = () => setActive(parseCategoriesFromUrl());
+    setFilter(parseFilterFromUrl());
+    const onPop = () => setFilter(parseFilterFromUrl());
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Update state + URL via shallow history (no reload). Empty set strips the param.
-  const applyActive = (next: Set<Category>) => {
-    setActive(next);
-    const params = new URLSearchParams(window.location.search);
-    if (next.size === 0) {
-      params.delete("category");
-    } else {
-      params.set("category", CATEGORY_SLUGS.filter((c) => next.has(c)).join(","));
-    }
-    const qs = params.toString();
-    window.history.pushState(null, "", qs ? `/blog?${qs}` : "/blog");
+  // Update state + URL via shallow history (no reload). "all" strips the param.
+  const applyFilter = (id: Filter) => {
+    setFilter(id);
+    window.history.pushState(null, "", id === "all" ? "/blog" : `/blog?category=${id}`);
   };
 
-  const toggleCategory = (cat: Category) => {
-    const next = new Set(active);
-    if (next.has(cat)) next.delete(cat);
-    else next.add(cat);
-    applyActive(next);
-  };
-
-  const isAll = active.size === 0;
-  const filtered = isAll ? posts : posts.filter((p) => active.has(p.category));
+  const isAll = filter === "all";
+  const filtered = isAll ? posts : posts.filter((p) => p.category === filter);
   const pinnedPost = isAll ? filtered.find((p) => p.pinned) : undefined;
   const featured = pinnedPost ?? filtered[0];
   const rest = filtered.filter((p) => p !== featured);
 
-  const heading = isAll
-    ? "All Posts"
-    : active.size === 1
-    ? CAT_CONFIG[[...active][0]].label
-    : "Filtered Posts";
+  const heading = isAll ? "All Posts" : CAT_CONFIG[filter].label;
 
   return (
     <>
       <main className="min-h-screen pt-24 pb-20">
         <div className="max-w-[1100px] mx-auto px-6">
+          {/* Start Here module (server-rendered) — sits above the header + filter */}
+          {startHere}
+
           {/* Page header row */}
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
@@ -242,11 +225,10 @@ export default function BlogClientPage({
               </h1>
             </div>
 
-            {/* Multi-select filter chips */}
+            {/* Single-select filter chips */}
             <div className="flex items-center gap-2 flex-wrap">
-              {/* "All" reset chip — active only when no category is selected */}
               <button
-                onClick={() => applyActive(new Set())}
+                onClick={() => applyFilter("all")}
                 aria-pressed={isAll}
                 className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none cursor-pointer"
                 style={{
@@ -260,12 +242,12 @@ export default function BlogClientPage({
                 All
               </button>
               {CATEGORY_SLUGS.map((slug) => {
-                const on = active.has(slug);
+                const on = filter === slug;
                 const color = CAT_CONFIG[slug].color;
                 return (
                   <button
                     key={slug}
-                    onClick={() => toggleCategory(slug)}
+                    onClick={() => applyFilter(slug)}
                     aria-pressed={on}
                     className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none cursor-pointer"
                     style={{
@@ -283,12 +265,9 @@ export default function BlogClientPage({
             </div>
           </div>
 
-          {/* Start Here module (server-rendered, above the grid) */}
-          {startHere}
-
           {/* Posts or empty state */}
           {filtered.length === 0 ? (
-            <EmptyState onReset={() => applyActive(new Set())} />
+            <EmptyState onReset={() => applyFilter("all")} />
           ) : (
             <>
               {featured && (

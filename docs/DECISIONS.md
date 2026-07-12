@@ -11,10 +11,10 @@ ADR-lite. Append a dated entry per significant decision: context → choice → 
 **Choice:** Three categories — `shipping-logistics`, `product-systems`, `ai-in-operations`. Each post gets exactly one; old topic labels stay as `tags`. Spec + mapping saved at `docs/specs/blog-restructure.md` §4.
 **Rationale:** Domain-first taxonomy; `ai-in-operations` is the bridge category shared by both reader paths.
 
-### D6 — Multi-select filter must preserve static-HTML crawlability
-**Context:** Spec requires multi-select chips + deep-linkable `?category=a,b`, but reading query params via `useSearchParams()` previously blanked `/blog` for non-JS crawlers ([[feedback-update-tasks-status]] era bug).
-**Choice:** Filter state defaults to empty ("All") so the full list prerenders into static HTML; parse `?category=` from `window.location` in a post-mount `useEffect` + `popstate`; sync URL via `history.pushState`. Never `useSearchParams`.
-**Rationale:** Satisfies deep-link/back-forward requirements while keeping the crawler fix intact.
+### D6 — Single-select category filter (crawler-safe); Start Here above the filter
+**Context:** The spec asked for multi-select, but on review the author found it broken/unwanted and chose a simple single-select filter (2026-07-11). Also: the Start Here module belongs at the very top, above the header/filter — not between filter and grid.
+**Choice:** Single-select chips (All + 3 categories, one active at a time). Filter defaults to "all" so the full list prerenders into static HTML; parse `?category=` from `window.location` on mount + `popstate`; sync URL via `history.pushState`. Never `useSearchParams`. Start Here renders first in `<main>`; its per-card "See all" links were removed.
+**Rationale:** Keeps the crawler fix intact and the breadcrumb deep-link working, without the multi-select complexity. Editorial "Start Here" onboarding leads the page.
 
 ### D7 — Compute read-time at build (220 wpm), ignore frontmatter number
 **Context:** Frontmatter `readTime` values over-reported badly (e.g. 9–10 min on ~900–1000-word posts).
