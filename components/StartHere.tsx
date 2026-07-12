@@ -34,10 +34,7 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
   const bySlug = new Map(posts.map((p) => [p.slug, p]));
   return (
     <section className="mb-14">
-      {/* Section header — matches the blog's eyebrow + heading scale */}
-      <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-slate-400 dark:text-slate-500 mb-1.5">
-        Start Here
-      </p>
+      {/* Section header — matches the blog's heading scale */}
       <h2 className="text-[22px] md:text-[26px] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
         New here? Two ways in.
       </h2>
