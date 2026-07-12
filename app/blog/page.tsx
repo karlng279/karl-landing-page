@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import BlogClientPage from "./BlogClientPage";
+import StartHere from "@/components/StartHere";
 import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <BlogClientPage posts={posts} />
+      <BlogClientPage posts={posts} startHere={<StartHere posts={posts} />} />
     </>
   );
 }

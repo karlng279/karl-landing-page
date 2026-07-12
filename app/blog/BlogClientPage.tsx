@@ -1,61 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { PostMeta, Category } from "@/lib/posts";
 import Connect from "@/components/Connect";
 
-export const CAT_CONFIG: Record<
-  Category,
-  { label: string; color: string; bg: string; emptyIcon: string; emptyHint: string }
-> = {
-  product: {
-    label: "Product",
-    color: "#2563eb",
-    bg: "rgba(37,99,235,0.1)",
-    emptyIcon: "📦",
-    emptyHint: "Product strategy, roadmaps, and decision-making frameworks.",
+export const CAT_CONFIG: Record<Category, { label: string; color: string; bg: string }> = {
+  "shipping-logistics": {
+    label: "Shipping & Logistics",
+    color: "#0284c7",
+    bg: "rgba(2,132,199,0.1)",
   },
-  management: {
-    label: "Management",
-    color: "#16a34a",
-    bg: "rgba(22,163,74,0.1)",
-    emptyIcon: "🗂️",
-    emptyHint: "Team leadership, processes, and organizational learnings.",
+  "product-systems": {
+    label: "Product & Systems",
+    color: "#7c3aed",
+    bg: "rgba(124,58,237,0.1)",
   },
-  "ai-adoption": {
-    label: "AI Adoption",
-    color: "#dc2626",
-    bg: "rgba(220,38,38,0.1)",
-    emptyIcon: "🤖",
-    emptyHint: "AI in logistics ops — where it helps and where it still hypes.",
-  },
-  "container-shipping": {
-    label: "Container Shipping",
-    color: "#db2777",
-    bg: "rgba(219,39,119,0.1)",
-    emptyIcon: "🚢",
-    emptyHint:
-      "Booking flows, documentation, visibility, and trade-lane insights.",
+  "ai-in-operations": {
+    label: "AI in Operations",
+    color: "#c026d3",
+    bg: "rgba(192,38,211,0.1)",
   },
 };
 
-const FILTER_ORDER: Array<"all" | Category> = [
-  "all",
-  "product",
-  "management",
-  "ai-adoption",
-  "container-shipping",
+const CATEGORY_SLUGS: Category[] = [
+  "shipping-logistics",
+  "product-systems",
+  "ai-in-operations",
 ];
 
-const FILTER_LABELS: Record<string, string> = {
-  all: "All",
-  product: "Product",
-  management: "Management",
-  "ai-adoption": "AI Adoption",
-  "container-shipping": "Container Shipping",
-};
+const ALL_COLOR = "#334155"; // slate-700, neutral (distinct from the 3 category colors)
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-US", {
@@ -159,43 +133,21 @@ function BlogCard({ post, featured = false, pinned = false }: { post: PostMeta; 
   );
 }
 
-function EmptyState({ category, onReset }: { category: Category; onReset: () => void }) {
-  const cat = CAT_CONFIG[category];
+function EmptyState({ onReset }: { onReset: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 px-6 text-center">
-      {/* Icon bubble */}
-      <div
-        className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5"
-        style={{ background: cat.bg }}
-      >
-        {cat.emptyIcon}
+      <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5 bg-slate-100 dark:bg-slate-800">
+        🗂️
       </div>
-
-      {/* Heading */}
       <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">
-        No{" "}
-        <span style={{ color: cat.color }}>{cat.label}</span> posts yet
+        No posts in this category yet
       </h2>
-
-      {/* Hint */}
       <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed mb-6">
-        {cat.emptyHint}
+        Nothing matches the current filter. Try another category or browse everything.
       </p>
-
-      {/* Divider with label */}
-      <div className="flex items-center gap-3 w-full max-w-xs mb-6">
-        <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
-        <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">
-          in the meantime
-        </span>
-        <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
-      </div>
-
-      {/* CTA */}
       <button
         onClick={onReset}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors cursor-pointer"
-        style={{ color: cat.color }}
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400 transition-colors cursor-pointer"
       >
         Browse all posts
         <svg
@@ -212,34 +164,68 @@ function EmptyState({ category, onReset }: { category: Category; onReset: () => 
   );
 }
 
-type Filter = "all" | Category;
+// Parse + validate the comma-separated ?category= param into a set of known slugs.
+function parseCategoriesFromUrl(): Set<Category> {
+  const raw = new URLSearchParams(window.location.search).get("category");
+  if (!raw) return new Set();
+  const valid = raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s): s is Category => (CATEGORY_SLUGS as string[]).includes(s));
+  return new Set(valid);
+}
 
-export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
-  const router = useRouter();
+export default function BlogClientPage({
+  posts,
+  startHere,
+}: {
+  posts: PostMeta[];
+  startHere?: React.ReactNode;
+}) {
+  // Empty set = "All". Default empty so the full list is prerendered into the
+  // static HTML (crawlable). We deliberately avoid useSearchParams(), which
+  // would exclude this subtree from the static export.
+  const [active, setActive] = useState<Set<Category>>(new Set());
 
-  // Default to "all" so the full post list is prerendered into the static HTML
-  // (crawlable by search engines and LLMs). We intentionally avoid
-  // useSearchParams(), which would exclude this subtree from the static export.
-  const [filter, setFilter] = useState<Filter>("all");
-
-  // Restore a ?category= deep-link after mount, without blanking the static HTML.
+  // Restore ?category= on mount and on back/forward — without blanking the HTML.
   useEffect(() => {
-    const cat = new URLSearchParams(window.location.search).get("category");
-    if (cat && (FILTER_ORDER as string[]).includes(cat)) {
-      setFilter(cat as Filter);
-    }
+    setActive(parseCategoriesFromUrl());
+    const onPop = () => setActive(parseCategoriesFromUrl());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  const applyFilter = (id: Filter) => {
-    setFilter(id);
-    router.replace(id === "all" ? "/blog" : `/blog?category=${id}`, { scroll: false });
+  // Update state + URL via shallow history (no reload). Empty set strips the param.
+  const applyActive = (next: Set<Category>) => {
+    setActive(next);
+    const params = new URLSearchParams(window.location.search);
+    if (next.size === 0) {
+      params.delete("category");
+    } else {
+      params.set("category", CATEGORY_SLUGS.filter((c) => next.has(c)).join(","));
+    }
+    const qs = params.toString();
+    window.history.pushState(null, "", qs ? `/blog?${qs}` : "/blog");
   };
 
-  const filtered =
-    filter === "all" ? posts : posts.filter((p) => p.category === filter);
-  const pinnedPost = filter === "all" ? filtered.find((p) => p.pinned) : undefined;
+  const toggleCategory = (cat: Category) => {
+    const next = new Set(active);
+    if (next.has(cat)) next.delete(cat);
+    else next.add(cat);
+    applyActive(next);
+  };
+
+  const isAll = active.size === 0;
+  const filtered = isAll ? posts : posts.filter((p) => active.has(p.category));
+  const pinnedPost = isAll ? filtered.find((p) => p.pinned) : undefined;
   const featured = pinnedPost ?? filtered[0];
   const rest = filtered.filter((p) => p !== featured);
+
+  const heading = isAll
+    ? "All Posts"
+    : active.size === 1
+    ? CAT_CONFIG[[...active][0]].label
+    : "Filtered Posts";
 
   return (
     <>
@@ -252,41 +238,57 @@ export default function BlogClientPage({ posts }: { posts: PostMeta[] }) {
                 {filtered.length} post{filtered.length !== 1 ? "s" : ""}
               </p>
               <h1 className="text-[28px] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
-                {filter === "all"
-                  ? "All Posts"
-                  : CAT_CONFIG[filter as Category]?.label ?? filter}
+                {heading}
               </h1>
             </div>
 
-            {/* Filter pills */}
+            {/* Multi-select filter chips */}
             <div className="flex items-center gap-2 flex-wrap">
-              {FILTER_ORDER.map((id) => {
-                const active = filter === id;
-                const catColor =
-                  id !== "all" ? CAT_CONFIG[id as Category].color : "#7c3aed";
+              {/* "All" reset chip — active only when no category is selected */}
+              <button
+                onClick={() => applyActive(new Set())}
+                aria-pressed={isAll}
+                className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none cursor-pointer"
+                style={{
+                  borderWidth: "1.5px",
+                  borderStyle: "solid",
+                  borderColor: isAll ? ALL_COLOR : "rgba(148,163,184,0.4)",
+                  background: isAll ? `${ALL_COLOR}18` : "transparent",
+                  color: isAll ? ALL_COLOR : "#64748b",
+                }}
+              >
+                All
+              </button>
+              {CATEGORY_SLUGS.map((slug) => {
+                const on = active.has(slug);
+                const color = CAT_CONFIG[slug].color;
                 return (
                   <button
-                    key={id}
-                    onClick={() => applyFilter(id)}
+                    key={slug}
+                    onClick={() => toggleCategory(slug)}
+                    aria-pressed={on}
                     className="px-4 py-1.5 rounded-full text-[13px] font-semibold transition-all duration-150 outline-none cursor-pointer"
                     style={{
                       borderWidth: "1.5px",
                       borderStyle: "solid",
-                      borderColor: active ? catColor : "rgba(148,163,184,0.4)",
-                      background: active ? `${catColor}18` : "transparent",
-                      color: active ? catColor : "#64748b",
+                      borderColor: on ? color : "rgba(148,163,184,0.4)",
+                      background: on ? `${color}18` : "transparent",
+                      color: on ? color : "#64748b",
                     }}
                   >
-                    {FILTER_LABELS[id]}
+                    {CAT_CONFIG[slug].label}
                   </button>
                 );
               })}
             </div>
           </div>
 
+          {/* Start Here module (server-rendered, above the grid) */}
+          {startHere}
+
           {/* Posts or empty state */}
           {filtered.length === 0 ? (
-            <EmptyState category={filter as Category} onReset={() => applyFilter("all")} />
+            <EmptyState onReset={() => applyActive(new Set())} />
           ) : (
             <>
               {featured && (
