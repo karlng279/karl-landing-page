@@ -1,28 +1,37 @@
 import Link from "next/link";
-import type { PostMeta, Category } from "@/lib/posts";
+import type { PostMeta } from "@/lib/posts";
 
-// "Start Here" two-path module (ADD-1). Server-rendered and auto-populating:
-// each card lists the 3 most-recent posts in its mapped categories, derived
-// from post metadata (no hardcoded titles). `ai-in-operations` is the bridge
-// category shared by both paths. `posts` arrives already sorted date-desc.
-const PATHS: { key: string; heading: string; intro: string; categories: Category[] }[] = [
+// "Start Here" two-path module (ADD-1). Server-rendered. Each card shows a
+// hand-curated set of posts (by slug, in the given order) — the author picks
+// which pieces best represent each reader path. To change what appears, edit
+// the `slugs` lists below. Unknown/unpublished slugs are skipped safely.
+const PATHS: { key: string; heading: string; intro: string; slugs: string[] }[] = [
   {
     key: "a",
     heading: "You work in shipping & logistics",
     intro:
       "You already live this: SI cutoffs, rolled containers, B/L control, and the quiet phone calls that keep everyone aligned when the systems drift apart. These are the posts about what really happens between booking and cargo release — and where software earns its place or gets in the way.",
-    categories: ["shipping-logistics", "ai-in-operations"],
+    slugs: [
+      "shipment-visibility-gap",
+      "kpi-success-metrics-container-shipping",
+      "ai-adoption-shipping-ops",
+    ],
   },
   {
     key: "b",
     heading: "You build products or software",
     intro:
       "Container shipping is about as constraint-heavy as a domain gets: compliance rules, tangled system dependencies, and edge cases that quietly explode at scale. These are the posts about turning that mess into systems that hold — and about where AI genuinely speeds the work versus where it just produces confident nonsense.",
-    categories: ["product-systems", "ai-in-operations"],
+    slugs: [
+      "product-dev-lifecycle-logistics",
+      "document-management-ai-era",
+      "mvp-communication-gap",
+    ],
   },
 ];
 
 export default function StartHere({ posts }: { posts: PostMeta[] }) {
+  const bySlug = new Map(posts.map((p) => [p.slug, p]));
   return (
     <section className="mb-14">
       {/* Section header — matches the blog's eyebrow + heading scale */}
@@ -39,9 +48,9 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
 
       <div className="mt-6 grid md:grid-cols-2 gap-6">
         {PATHS.map((path) => {
-          const top3 = posts
-            .filter((p) => path.categories.includes(p.category))
-            .slice(0, 3);
+          const items = path.slugs
+            .map((slug) => bySlug.get(slug))
+            .filter((p): p is PostMeta => Boolean(p));
           return (
             <div
               key={path.key}
@@ -56,7 +65,7 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
               </p>
 
               <ul className="mt-5 space-y-2.5">
-                {top3.map((p) => (
+                {items.map((p) => (
                   <li key={p.slug} className="flex items-start gap-2.5">
                     <span
                       className="mt-[9px] h-1.5 w-1.5 rounded-full flex-shrink-0 bg-slate-300 dark:bg-slate-600"
