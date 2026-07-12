@@ -4,6 +4,25 @@ ADR-lite. Append a dated entry per significant decision: context → choice → 
 
 ---
 
+## 2026-07-11 — Blog restructure (spec v4)
+
+### D5 — Collapse blog taxonomy to 3 domain-coherent categories
+**Context:** Old categories (Product / Management / AI Adoption / Container Shipping) mixed a function axis with a domain axis — incoherent for positioning Karl as a shipping-domain expert who builds product.
+**Choice:** Three categories — `shipping-logistics`, `product-systems`, `ai-in-operations`. Each post gets exactly one; old topic labels stay as `tags`. Spec + mapping saved at `docs/specs/blog-restructure.md` §4.
+**Rationale:** Domain-first taxonomy; `ai-in-operations` is the bridge category shared by both reader paths.
+
+### D6 — Multi-select filter must preserve static-HTML crawlability
+**Context:** Spec requires multi-select chips + deep-linkable `?category=a,b`, but reading query params via `useSearchParams()` previously blanked `/blog` for non-JS crawlers ([[feedback-update-tasks-status]] era bug).
+**Choice:** Filter state defaults to empty ("All") so the full list prerenders into static HTML; parse `?category=` from `window.location` in a post-mount `useEffect` + `popstate`; sync URL via `history.pushState`. Never `useSearchParams`.
+**Rationale:** Satisfies deep-link/back-forward requirements while keeping the crawler fix intact.
+
+### D7 — Compute read-time at build (220 wpm), ignore frontmatter number
+**Context:** Frontmatter `readTime` values over-reported badly (e.g. 9–10 min on ~900–1000-word posts).
+**Choice:** `computeReadTime()` in `lib/posts.ts` strips markdown/code and rounds words/220; frontmatter `readTime` is now ignored (left inert in files).
+**Rationale:** Honest, auto-maintaining for future posts — matches the spec's metadata-driven bias.
+
+---
+
 ## 2026-07-09 — v2 foundational decisions
 
 ### D1 — Migrate hosting from GitHub Pages to Vercel
