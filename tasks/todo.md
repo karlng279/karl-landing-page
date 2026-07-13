@@ -47,12 +47,27 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] Submit sitemap to Google Search Console (manual, external)
 - [ ] Validate JSON-LD in Google Rich Results Test; test share preview (LinkedIn/X) (manual, external)
 
-## M2 — Homepage content & structure revision (static stack)
-- [ ] Gather Karl's specific content/positioning direction (collaborative)
-- [ ] Ensure single strong H1 with target positioning
-- [ ] Tighten section order/copy in `app/page.tsx`
+## M2 — Homepage restructure (spec: docs/specs/homepage-restructure.md) — PO→PM reframe (branch: homepage-v2)
+- [x] FIX-1/9 Delete "Open to Opportunities" banner (was `class="hidden"` → crawler-visible placeholder text) + all stale strings; removed `OpportunitiesBanner.tsx`
+- [x] FIX-2 Hero: replaced hidden relocation badge with factual `📍 Boston, MA` pill (SVG map-pin, not emoji)
+- [x] FIX-3 Global positioning "Technical Product Manager" → "Product Manager — Container Shipping & Logistics Systems" (layout meta/OG/Twitter, JSON-LD, Hero, blog byline, llms.txt generator, README)
+- [x] FIX-4 Case-study metrics → single figures (no `X–Y%` ranges), per spec table
+- [x] FIX-5 "How I Work" 8 → 6 stages (Strategy & Bets → … → Launch & Learn); subtitle reframed
+- [x] FIX-6 Workflow CTA → live AI-Ready Product Workflow v2 (github.io)
+- [x] FIX-7 "renders twice" — confirmed NOT a bug (desktop `hidden lg:block` + mobile `lg:hidden` responsive variants)
+- [x] FIX-8 Removed ghost/cursor Three.js effect entirely (`GhostCursor.tsx` deleted); kept dot-grid + entrance fade. `three` now unused dep (optional uninstall)
+- [x] FIX-10 Footer "My Work" (vxsolutions) link removed; case-study hrefs kept, link text/aria generic ("View case study →")
+- [x] FIX-11/12 "Currently Building" genericized; dropped 2 SME domain bullets
+- [x] FIX-13 Smart Profit + Smart Inventory demoted to subordinate "Side Projects" strip
+- [x] ADD-1 Flagship "AI-Ready Product Workflow v2" card — bold-accent gradient ring + "Live · Open Source" badge + `PM Strategy → PO Pipeline → Design → Code → Validate` chain inside card + 2 links (no star counts). New `components/FlagshipProject.tsx`
+- [x] ADD-2 "Writing" section auto-pulls 3 newest posts via `getAllPosts().slice(0,3)` (server component). New `components/WritingList.tsx`, matched to blog card tokens
+- [x] Build + static-HTML verification passed (0 stale strings, 0 metric ranges, 6 stages, flagship links, 3 recent posts, llms.txt rebuilt)
+- [ ] Author visual review in browser (design sign-off) — pending
+- [ ] Merge homepage-v2 → main + deploy (per author direction)
+- [ ] Post-deploy: `curl` grep for "Month, Year"/"Technical Product Manager" = 0 on live; re-check share preview
+
+## M2b — subscribe placeholder (deferred to M4 when backend lands)
 - [ ] Add subscribe placeholder + CTA (wired for real in M4)
-- [ ] Deploy on current pipeline
 
 ## M3 — Vercel migration (foundation for backend)
 - [ ] Remove `output: 'export'` (and reconsider `images.unoptimized`) in `next.config.js`

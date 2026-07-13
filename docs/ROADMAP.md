@@ -3,10 +3,10 @@
 Living roadmap for the v2 of karl-nguyen.com. Active work lives in [../tasks/todo.md](../tasks/todo.md); decisions in [DECISIONS.md](DECISIONS.md).
 
 ## Goal
-Turn the personal site + blog into a discoverable, interactive presence for Karl Nguyen as a **Technical PM in Shipping & Logistics**.
+Turn the personal site + blog into a discoverable, interactive presence for Karl Nguyen as a **Product Manager in Container Shipping & Logistics**.
 
 Success criteria:
-1. **SEO-focused & discoverable** — rank/appear for "Technical PM shipping & logistics" and related.
+1. **SEO-focused & discoverable** — rank/appear for "product manager container shipping & logistics" and related.
 2. **LLM-crawlable** — ClaudeBot, GPTBot, Gemini, Perplexity can ingest and cite the site.
 3. **Subscribe** — readers get new blog posts by email.
 4. **Interactive** — comments, reactions/claps, view counts, social share.
@@ -21,7 +21,7 @@ Success criteria:
 |---|---|---|
 | M0 | Memory scaffolding | — |
 | M1 | SEO/LLM infra (sitemap, robots, JSON-LD, RSS, llms.txt, OG, metadataBase) | Static (current) |
-| M2 | Homepage content & structure revision | Static (current) |
+| M2 | Homepage content & structure revision — PO→PM reframe ✅ (2026-07-13) | Static (current) |
 | M3 | Vercel migration + DNS | Migrate |
 | M4 | Subscribe (managed newsletter) | Vercel |
 | M5 | Interaction (Giscus comments, reactions, views, share) | Vercel |
@@ -30,7 +30,8 @@ Success criteria:
 ## Shipped
 - **2026-07-09** — M0 + M1 + crawler bugfix (blog was empty to non-JS crawlers).
 - **2026-07-12** — Blog restructure (spec `docs/specs/blog-restructure.md`): 3-category taxonomy, single-select filter, curated "Start Here" two-path module, honest read-times, peer CTA. Static (current stack).
-- Next up: **M2** (homepage revision) then the backend phase (M3+).
+- **2026-07-13** — Homepage restructure (spec `docs/specs/homepage-restructure.md`): PO→PM reframe (global positioning, 6-stage "How I Work", flagship AI-Ready Product Workflow v2 card w/ pipeline chain), deleted dead "Open to Opportunities" markup, `📍 Boston, MA` hero pill, removed ghost cursor, demoted SME work to "Side Projects", single-figure metrics, new "Writing" section (auto-pulls 3 recent posts). Static (current stack).
+- Next up: the backend phase (**M3** Vercel migration → M4 subscribe → M5 interaction).
 
 ## Recommended tech (confirm at execution)
 Host: **Vercel** · Newsletter: **Buttondown** (RSS-to-email) · Comments: **Giscus** · Reactions/views: **Upstash Redis / Vercel KV** · Email (if self-send later): **Resend**.

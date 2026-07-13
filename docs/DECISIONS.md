@@ -4,6 +4,33 @@ ADR-lite. Append a dated entry per significant decision: context → choice → 
 
 ---
 
+## 2026-07-13 — Homepage restructure (spec `docs/specs/homepage-restructure.md`)
+
+### D8 — Reposition from "Technical Product Manager" → "Product Manager — Container Shipping & Logistics Systems" (global)
+**Context:** The homepage argued Product-Owner (delivery pipeline); Karl targets Senior PM roles. "Technical" in the headline read as implementation-flavored.
+**Choice:** Replace the role label everywhere — `layout.tsx` metadata/OG/Twitter, `personJsonLd.jobTitle`, Hero tagline, **blog post byline**, `scripts/generate-feeds.mjs` (llms.txt), README. Technical depth stays as *evidence* in body copy, not as a label.
+**Rationale:** One consistent identity across page, meta, structured data, and blog. Author chose global scope over homepage-only (a stale byline on /blog would read as sloppy).
+
+### D9 — PO→PM reframe: 6 end-to-end stages + flagship live artifact
+**Context:** "How I Work" was 8 delivery-only steps (Ideas→…→Release); no strategy/discovery/launch.
+**Choice:** Compress to 6 stages (Strategy & Bets → Discovery → Definition → Specs & Edge Cases → Design & Build → Launch & Learn). Add the shipped **AI-Ready Product Workflow v2** as the flagship case study — bold-accent full-width card (sky→fuchsia gradient ring, "Live · Open Source" badge) with the `PM Strategy → PO Pipeline → Design → Code → Validate` chain *inside the card* (author-selected placement) and two links (live + GitHub, no star counts).
+**Rationale:** The reframe needs *evidence*, not a relabel. A shipped, inspectable artifact + a strategy-to-launch process is the argument.
+
+### D10 — Remove the ghost/cursor hero effect entirely (not just soften)
+**Context:** Hero loaded a Three.js/WebGL cursor-trail via `dynamic({ssr:false})`; a prior commit had *softened* it. Spec asked to remove.
+**Choice:** Delete `GhostCursor.tsx` + its import. Kept the static dot-grid + entrance fade. `three` is now an unused dependency (was lazy-loaded, never in the main bundle) — optional `npm uninstall three`.
+**Rationale:** Author chose full removal for a lighter, calmer hero. Note: Hero keeps `"use client"` (entrance fade uses state) — removal did not make it fully server-renderable.
+
+### D11 — Delete dead placeholder markup; sharpen carrier focus
+**Context:** "Open to Opportunities" banner + hero relocation badge were `class="hidden"` — invisible on-page but present in served HTML (crawler-visible placeholder text: `[Month, Year]`, "updating soon", "Last updated: March 2026").
+**Choice:** Delete from the DOM (removed `OpportunitiesBanner.tsx`; replaced the hidden badge with a factual `📍 Boston, MA` pill using an **SVG map-pin, not an emoji**). Demote SME/eCommerce work: two case studies → subordinate "Side Projects" strip; dropped two SME domain bullets; genericized "Currently Building" and the vxsolutions link text (hrefs kept, footer "My Work" removed). Single-figure metrics (no `X–Y%` ranges).
+**Rationale:** Hiding ≠ removing for SEO/crawler hygiene. Carrier-side shipping is the moat; SME work dilutes it and is demoted, not deleted.
+
+### Spec correction — "How I Work renders twice" was NOT a bug
+`WorkFlow.tsx` renders the steps once for desktop (`hidden lg:block`) and once for mobile (`lg:hidden`) — responsive variants, only one visible per breakpoint. The crawled HTML showed both because both are in the DOM. No de-dup needed.
+
+---
+
 ## 2026-07-11 — Blog restructure (spec v4)
 
 ### D5 — Collapse blog taxonomy to 3 domain-coherent categories
