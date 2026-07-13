@@ -3,10 +3,12 @@ import Section from "@/components/Section";
 import WorkCard from "@/components/WorkCard";
 import WorkFlow from "@/components/WorkFlow";
 import ProjectCard from "@/components/ProjectCard";
+import FlagshipProject from "@/components/FlagshipProject";
+import WritingList from "@/components/WritingList";
 import Connect from "@/components/Connect";
-import OpportunitiesBanner from "@/components/OpportunitiesBanner";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
+import { getAllPosts } from "@/lib/posts";
 
 const SITE_URL = "https://karl-nguyen.com";
 
@@ -17,9 +19,9 @@ const personJsonLd = {
   name: "Karl Nguyen",
   url: SITE_URL,
   image: `${SITE_URL}/images/og-default.png`,
-  jobTitle: "Technical Product Manager",
+  jobTitle: "Product Manager — Container Shipping & Logistics Systems",
   description:
-    "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
+    "Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
   knowsAbout: [
     "Container Shipping",
     "Logistics Systems",
@@ -73,7 +75,65 @@ const AIBuilderIcon = () => (
   </svg>
 );
 
-// VX Solutions Projects
+// Flagship — the shipped, inspectable artifact that demonstrates end-to-end PM work.
+const flagshipProject = {
+  badge: "Live · Open Source",
+  title: "AI-Ready Product Workflow v2",
+  context:
+    "Product methodology lives in people's heads and scattered templates. AI agents have no structured methodology to work from, so their output is generic and untraceable.",
+  description:
+    "A four-framework knowledge base that gives AI agents methodology for every stage of product development — PM strategy, PO pipeline, design, and code — with a traceable artifact chain from strategy through to test cases.",
+  impact: [
+    "4 frameworks, 16 skills, 5 pipeline commands — installable in one command (npx)",
+    "Covers the full arc: strategy & OKRs → discovery (OST/JTBD) → PRD → story map → acceptance criteria → UAT → wireframes → component specs → code",
+    "Agent-agnostic: works with Claude Code, Codex, Gemini, and Cursor",
+    "Every artifact traceable end-to-end: PM-STRATEGY → PRD-XXX → USM-XXX → ST-XXX → AC-XXX → TC-XXX → WF-XXX → COMP-XXX",
+  ],
+  pipeline: ["PM Strategy", "PO Pipeline", "Design", "Code", "Validate"],
+  links: [
+    {
+      label: "View live",
+      href: "https://karlng279.github.io/ai-ready-product-workflow-v2/",
+      primary: true,
+    },
+    {
+      label: "View on GitHub",
+      href: "https://github.com/karlng279/ai-ready-product-workflow-v2",
+    },
+  ],
+};
+
+// Enterprise Projects (carrier-side, on-message — main grid)
+const enterpriseProjects = [
+  {
+    title: "Express Booking Flow (Container Shipments)",
+    context:
+      "Traditional booking flows are complex and require excessive upfront input, creating friction and drop-offs.",
+    description:
+      "Designed a simplified, guided booking experience with reduced input complexity and improved workflow structure.",
+    impact: [
+      "Increased booking auto-confirmation conversion by ~20%",
+      "Reduced user friction and time-to-book",
+      "Improved usability across user segments",
+    ],
+    isEnterprise: true,
+  },
+  {
+    title: "End-to-End Shipment Overview Dashboard",
+    context:
+      "Shipment data was fragmented across booking, documentation, and tracking systems, forcing users to navigate multiple interfaces.",
+    description:
+      "Built a centralized dashboard consolidating shipment status, milestones, and document visibility into a single interface.",
+    impact: [
+      "Drove ~30% adoption increase following platform UX redesign",
+      "Reduced manual checks and email coordination by ~40% through system integration",
+      "Enabled real-time shipment visibility and self-service",
+    ],
+    isEnterprise: true,
+  },
+];
+
+// Shipping / compliance-domain product work — main grid
 const vxProjects = [
   {
     title: "Document Management System (Shipping)",
@@ -83,7 +143,7 @@ const vxProjects = [
     description:
       "Built a centralized document system with structured metadata, search, and access control.",
     impact: [
-      "Reduced document retrieval time from hours → seconds",
+      "Cut document retrieval from a multi-hour email and folder hunt to a single keyword search",
       "Improved visibility and collaboration across teams",
       "Reduced risk of missed renewals and compliance gaps",
     ],
@@ -100,61 +160,21 @@ const vxProjects = [
       "Enabled foundation for AI-assisted compliance guidance",
     ],
   },
+];
+
+// Side Projects — secondary SME/eCommerce work, kept but visually subordinate.
+const sideProjects = [
   {
     title: "Smart Profit & Expense Tracker",
     link: "https://vxsolutions.tech/showcases/container-e-commerce/smart-profit-expense-tracker",
-    context:
-      "eCommerce sellers lack visibility into true profitability after operational costs.",
     description:
-      "Built a system for tracking costs, margins, and financial performance.",
-    impact: [
-      "Enabled accurate profit tracking beyond revenue",
-      "Reduced reliance on spreadsheets",
-      "Improved decision-making for non-technical users",
-    ],
+      "Cost, margin, and financial-performance tracking that gives eCommerce sellers visibility into true profitability beyond revenue.",
   },
   {
     title: "Smart Inventory Management",
     link: "https://vxsolutions.tech/showcases/container-e-commerce/smart-inventory-management",
-    context:
-      "Inventory is fragmented across channels, leading to overselling and stock issues.",
     description:
-      "Built a unified inventory system with alerts, tracking, and replenishment logic.",
-    impact: [
-      "Reduced overselling and stock emergencies",
-      "Improved inventory planning",
-      "Provided real-time operational visibility",
-    ],
-  },
-];
-
-// Enterprise Projects
-const enterpriseProjects = [
-  {
-    title: "Express Booking Flow (Container Shipments)",
-    context:
-      "Traditional booking flows are complex and require excessive upfront input, creating friction and drop-offs.",
-    description:
-      "Designed a simplified, guided booking experience with reduced input complexity and improved workflow structure.",
-    impact: [
-      "Increased booking completion rate by ~15–20%",
-      "Reduced user friction and time-to-book",
-      "Improved usability across user segments",
-    ],
-    isEnterprise: true,
-  },
-  {
-    title: "End-to-End Shipment Overview Dashboard",
-    context:
-      "Shipment data was fragmented across booking, documentation, and tracking systems, forcing users to navigate multiple interfaces.",
-    description:
-      "Built a centralized dashboard consolidating shipment status, milestones, and document visibility into a single interface.",
-    impact: [
-      "Increased feature adoption by ~20–30%",
-      "Reduced reliance on manual tracking (emails / support) by ~25–35%",
-      "Enabled real-time shipment visibility and self-service",
-    ],
-    isEnterprise: true,
+      "A unified inventory system with alerts, tracking, and replenishment logic to reduce overselling and stock emergencies.",
   },
 ];
 
@@ -185,6 +205,8 @@ const skillsData = {
 };
 
 export default function Home() {
+  const recentPosts = getAllPosts().slice(0, 3);
+
   return (
     <>
       <JsonLd data={personJsonLd} />
@@ -275,14 +297,6 @@ export default function Home() {
                   <span className="text-purple-500 mt-1">•</span>
                   <span>Inventory & Operations Management</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">•</span>
-                  <span>eCommerce Profitability & Cost Tracking</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">•</span>
-                  <span>Workflow Automation for SMEs</span>
-                </li>
               </ul>
             </div>
           </div>
@@ -310,9 +324,9 @@ export default function Home() {
                   Currently Building
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Helping smaller businesses in Vietnam digitize exports, inventory, and
-                  cross-border flows. Building tools that enable local offices, forwarders, and
-                  small shippers to get answers without email chaos.
+                  Tools that let forwarders, local offices, and small shippers get answers about
+                  their cargo without an email thread — structured data and rule-based systems as
+                  the foundation for practical AI use.
                 </p>
               </div>
             </div>
@@ -364,9 +378,20 @@ export default function Home() {
       <Section
         id="product-work"
         title="Product Work"
-        subtitle="Spanning enterprise-scale product work at a global ocean carrier and hands-on product building for SMEs in shipping and logistics."
+        subtitle="Enterprise-scale product work at a global ocean carrier, plus systems I've shipped end-to-end across shipping and logistics."
         className="bg-slate-50/50 dark:bg-slate-900/30"
       >
+        {/* Flagship — most prominent */}
+        <FlagshipProject
+          badge={flagshipProject.badge}
+          title={flagshipProject.title}
+          context={flagshipProject.context}
+          description={flagshipProject.description}
+          impact={flagshipProject.impact}
+          pipeline={flagshipProject.pipeline}
+          links={flagshipProject.links}
+        />
+
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {enterpriseProjects.map((project, index) => (
             <ProjectCard
@@ -389,13 +414,67 @@ export default function Home() {
             />
           ))}
         </div>
+
+        {/* Side Projects — secondary strip */}
+        <div className="max-w-5xl mx-auto mt-12">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center mb-5">
+            Side Projects
+          </h3>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {sideProjects.map((project, index) => (
+              <a
+                key={`side-${index}`}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} — view case study`}
+                className="group flex items-start justify-between gap-4 rounded-xl bg-white/60 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-700/50 px-5 py-4 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+              >
+                <div>
+                  <p className="font-semibold text-slate-800 dark:text-slate-100 text-sm">
+                    {project.title}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    {project.description}
+                  </p>
+                  <span className="inline-block mt-2 text-xs font-medium text-primary-600 dark:text-primary-400">
+                    View case study →
+                  </span>
+                </div>
+                <svg
+                  className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0 mt-0.5 group-hover:text-primary-500 transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Writing Section */}
+      <Section
+        id="writing"
+        title="Writing"
+        subtitle="Field notes from inside container-shipping product work."
+      >
+        <WritingList posts={recentPosts} />
       </Section>
 
       {/* How I Work Section */}
       <Section
         id="how-i-work"
         title="How I Work"
-        subtitle="A consistent flow from idea → shipped feature → monitored outcome, with AI assisting at every step"
+        subtitle="From strategy and discovery through to shipped features and monitored outcomes — with AI compressing the busywork at every stage."
         className="bg-slate-50/50 dark:bg-slate-900/30"
       >
         <WorkFlow />
@@ -511,12 +590,6 @@ export default function Home() {
           </p>
         </div>
       </Section>
-
-      {/* Open to Opportunities Banner */}
-      <OpportunitiesBanner
-        relocatingDate="[Month, Year]"
-        lastUpdated="March 2026"
-      />
 
       {/* Connect Section (Footer) */}
       <Connect />

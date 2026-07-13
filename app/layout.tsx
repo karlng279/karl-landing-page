@@ -17,12 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://karl-nguyen.com"),
-  title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
+  title: "Karl Nguyen | Product Manager — Container Shipping & Logistics",
   description:
-    "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Delivering measurable impact across global logistics platforms.",
+    "Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Delivering measurable impact across global logistics platforms.",
   keywords: [
     "Product Manager",
-    "Technical Product Manager",
+    "Container Shipping Product Manager",
     "Container Shipping",
     "Logistics Systems",
     "Shipment Visibility",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
+    title: "Karl Nguyen | Product Manager — Container Shipping & Logistics",
     description:
-      "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
+      "Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
     type: "website",
     locale: "en_US",
     url: "https://karl-nguyen.com",
@@ -52,15 +52,15 @@ export const metadata: Metadata = {
         url: "/images/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Karl Nguyen — Technical Product Manager, Container Shipping & Logistics",
+        alt: "Karl Nguyen — Product Manager, Container Shipping & Logistics",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karl Nguyen | Technical Product Manager – Logistics & Shipping",
+    title: "Karl Nguyen | Product Manager — Container Shipping & Logistics",
     description:
-      "Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
+      "Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility.",
     images: ["/images/og-default.png"],
   },
   icons: {

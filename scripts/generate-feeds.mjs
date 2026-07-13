@@ -103,11 +103,11 @@ function generateLlmsTxt(posts) {
   lines.push(`# ${AUTHOR}`);
   lines.push("");
   lines.push(
-    "> Technical Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Writes about logistics technology, product management, and AI adoption in operations."
+    "> Product Manager specialized in Container Shipping & Logistics Systems — Booking, SI/BL, and Shipment Visibility. Writes about logistics technology, product management, and AI adoption in operations."
   );
   lines.push("");
   lines.push(`- Site: ${SITE_URL}`);
-  lines.push(`- Role: Technical Product Manager (Container Shipping & Logistics)`);
+  lines.push(`- Role: Product Manager (Container Shipping & Logistics)`);
   lines.push(`- Focus: Booking systems, shipping documentation (SI/BL/VGM), shipment visibility, AI-augmented product workflows`);
   lines.push(`- Contact: https://www.linkedin.com/in/huynhnq94/`);
   lines.push("");

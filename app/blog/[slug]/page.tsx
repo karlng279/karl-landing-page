@@ -200,7 +200,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div>
                 <p className="font-semibold text-slate-900 dark:text-slate-50 text-sm lg:text-base">Karl Nguyen</p>
                 <p className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                  Technical Product Manager · Container Shipping & AI
+                  Product Manager · Container Shipping & Logistics Systems
                 </p>
               </div>
             </div>

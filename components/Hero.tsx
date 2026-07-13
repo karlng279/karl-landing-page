@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-const GhostCursor = dynamic(() => import("./GhostCursor"), { ssr: false });
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -21,23 +18,6 @@ export default function Hero() {
           backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
           backgroundSize: "40px 40px",
         }}
-      />
-
-      {/* Ghost cursor trail effect */}
-      <GhostCursor
-        color="#7dd3fc"
-        brightness={0.55}
-        trailLength={14}
-        inertia={0.4}
-        bloomStrength={0.25}
-        bloomRadius={0.4}
-        bloomThreshold={0.0}
-        grainIntensity={0.02}
-        fadeDelayMs={600}
-        fadeDurationMs={800}
-        zIndex={1}
-        mixBlendMode="screen"
-        edgeIntensity={0.3}
       />
 
       <div className="section-container relative z-10">
@@ -62,12 +42,43 @@ export default function Hero() {
 
           {/* Tagline */}
           <p
-            className={`text-xl md:text-2xl text-slate-700 dark:text-slate-300 font-medium mb-6 transition-all duration-700 delay-300 ${
+            className={`text-xl md:text-2xl text-slate-700 dark:text-slate-300 font-medium mb-4 transition-all duration-700 delay-300 ${
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Technical Product Manager – Container Shipping & Logistics Systems
+            Product Manager — Container Shipping & Logistics Systems
           </p>
+
+          {/* Location */}
+          <div
+            className={`flex justify-center mb-6 transition-all duration-700 delay-300 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              <svg
+                className="w-4 h-4 text-primary-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              Boston, MA
+            </span>
+          </div>
 
           {/* Description */}
           <p
@@ -81,21 +92,6 @@ export default function Hero() {
             </span>{" "}
             — delivering measurable impact across global logistics platforms, with hands-on execution from concept to product.
           </p>
-
-          {/* Relocating / Role badge */}
-          <div
-            id="hero-status-badge"
-            className={`hidden flex justify-center mb-10 transition-all duration-700 delay-450 ${
-              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <a
-              href="#opportunities"
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50 hover:bg-amber-100 dark:hover:bg-amber-900/40 hover:border-amber-400 dark:hover:border-amber-500 transition-colors duration-200"
-            >
-              📍 Relocating to the US · Open to Product & Logistics roles
-            </a>
-          </div>
 
           {/* CTA Buttons */}
           <div

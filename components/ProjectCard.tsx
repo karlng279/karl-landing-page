@@ -26,6 +26,7 @@ export default function ProjectCard({
             href: link,
             target: "_blank",
             rel: "noopener noreferrer",
+            "aria-label": `${title} — view case study`,
           }
         : {})}
       className={`card h-full flex flex-col ${link ? "cursor-pointer" : ""}`}

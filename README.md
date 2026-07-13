@@ -1,6 +1,6 @@
 # Karl Nguyen — Personal Site & Blog
 
-A modern, responsive personal website and blog for Karl Nguyen, Technical Product Manager specialising in shipping, logistics, and AI-augmented product workflows.
+A modern, responsive personal website and blog for Karl Nguyen, Product Manager specialising in container shipping, logistics, and AI-augmented product workflows.
 
 ## Tech Stack
 
