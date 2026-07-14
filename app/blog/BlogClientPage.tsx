@@ -71,7 +71,7 @@ function BlogCard({ post, featured = false, pinned = false }: { post: PostMeta; 
             }}
           >
             <div className="w-8 h-8 rounded-lg opacity-25" style={{ background: cat.color }} />
-            <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+            <span className="text-[10px] tracking-widest uppercase text-slate-400">
               cover image
             </span>
           </div>
@@ -100,15 +100,15 @@ function BlogCard({ post, featured = false, pinned = false }: { post: PostMeta; 
         </span>
 
         <h2
-          className={`font-bold leading-snug tracking-tight text-slate-900 dark:text-slate-50 group-hover:text-violet-700 dark:group-hover:text-violet-400 transition-colors ${
-            featured ? "text-xl md:text-[22px]" : "text-base"
+          className={`leading-snug tracking-tight text-slate-900 dark:text-slate-50 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors ${
+            featured ? "text-xl md:text-[22px] font-bold" : "text-base font-semibold"
           }`}
         >
           {post.title}
         </h2>
 
         <p
-          className={`text-sm lg:text-base text-slate-500 dark:text-slate-400 leading-relaxed ${
+          className={`text-sm lg:text-base text-slate-600 dark:text-slate-400 leading-relaxed ${
             featured ? "line-clamp-4" : "line-clamp-3"
           }`}
         >
@@ -139,7 +139,7 @@ function EmptyState({ onReset }: { onReset: () => void }) {
       <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5 bg-slate-100 dark:bg-slate-800">
         🗂️
       </div>
-      <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">
+      <h2 className="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100 mb-2">
         No posts in this category yet
       </h2>
       <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed mb-6">
@@ -147,7 +147,7 @@ function EmptyState({ onReset }: { onReset: () => void }) {
       </p>
       <button
         onClick={onReset}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400 transition-colors cursor-pointer"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 dark:text-primary-400 transition-colors cursor-pointer"
       >
         Browse all posts
         <svg
@@ -217,10 +217,10 @@ export default function BlogClientPage({
           {/* Page header row */}
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-slate-400 dark:text-slate-500 mb-1.5">
+              <p className="text-xs font-semibold tracking-wider uppercase text-slate-400 dark:text-slate-500 mb-1.5">
                 {filtered.length} post{filtered.length !== 1 ? "s" : ""}
               </p>
-              <h1 className="text-[28px] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
                 {heading}
               </h1>
             </div>

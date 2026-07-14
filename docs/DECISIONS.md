@@ -26,6 +26,11 @@ ADR-lite. Append a dated entry per significant decision: context → choice → 
 **Choice:** Delete from the DOM (removed `OpportunitiesBanner.tsx`; replaced the hidden badge with a factual `📍 Boston, MA` pill using an **SVG map-pin, not an emoji**). Demote SME/eCommerce work: two case studies → subordinate "Side Projects" strip; dropped two SME domain bullets; genericized "Currently Building" and the vxsolutions link text (hrefs kept, footer "My Work" removed). Single-figure metrics (no `X–Y%` ranges).
 **Rationale:** Hiding ≠ removing for SEO/crawler hygiene. Carrier-side shipping is the moat; SME work dilutes it and is demoted, not deleted.
 
+### D12 — Typography consistency pass (homepage ↔ blog, one system)
+**Context:** After the restructure, a 190-usage audit (workflow, adversarially reviewed) found the homepage and blog had drifted into two type systems: card titles at different weights/sizes, 4+ eyebrow recipes, off-scale bracket sizes on blog headings, a stray `font-mono`, and split heading weight (homepage bold-700 vs blog extrabold-800) + link accent (homepage sky vs blog violet).
+**Choice:** Converge to one scale. Applied: single eyebrow recipe (`text-xs font-semibold uppercase tracking-wider`); card titles = `font-semibold` (600) standard / `font-bold` (700) featured; blog headings collapsed to scale tokens (`text-3xl md:text-4xl`, StartHere `text-2xl`); responsive body step (`text-sm lg:text-base`) applied evenly; body copy → `slate-600`; dropped the lone `font-mono`; extracted `.btn-secondary`; footer h2 inherits base scale. **Author calls (2026-07-13):** unify all headings to **bold (700)** (was homepage-700/blog-800); unify the link/emphasis accent to **sky (`primary`)** everywhere (blog violet → primary).
+**Kept intentional (per critique):** the 3 data-driven category colors (incl. product-systems `#7c3aed` violet) for pills/breadcrumb/divider; the `@tailwindcss/typography` `prose` article system; blog card titles as `<h2>`. Single font family remains **Outfit** (JetBrains Mono is wired but now unused).
+
 ### Spec correction — "How I Work renders twice" was NOT a bug
 `WorkFlow.tsx` renders the steps once for desktop (`hidden lg:block`) and once for mobile (`lg:hidden`) — responsive variants, only one visible per breakpoint. The crawled HTML showed both because both are in the DOM. No de-dup needed.
 

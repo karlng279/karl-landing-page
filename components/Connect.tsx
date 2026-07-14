@@ -69,7 +69,7 @@ export default function Connect() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="mb-4">
             Let&apos;s{" "}
             <span className="gradient-text-accent">
               Connect

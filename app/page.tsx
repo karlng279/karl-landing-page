@@ -246,7 +246,7 @@ export default function Home() {
                   Container Shipping
                 </h3>
               </div>
-              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <ul className="space-y-2 text-sm lg:text-base text-slate-600 dark:text-slate-400">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
                   <span>Container Booking Systems</span>
@@ -288,7 +288,7 @@ export default function Home() {
                   Applied Product Domains
                 </h3>
               </div>
-              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <ul className="space-y-2 text-sm lg:text-base text-slate-600 dark:text-slate-400">
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
                   <span>Logistics Documentation & Compliance Systems</span>
@@ -506,7 +506,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-slate-800 dark:text-slate-100">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
                   Product & Delivery
                 </h3>
               </div>
@@ -537,7 +537,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-slate-800 dark:text-slate-100">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
                   Design Collaboration
                 </h3>
               </div>
@@ -568,7 +568,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-slate-800 dark:text-slate-100">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
                   Technical
                 </h3>
               </div>

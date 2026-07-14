@@ -62,6 +62,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] ADD-1 Flagship "AI-Ready Product Workflow v2" card — bold-accent gradient ring + "Live · Open Source" badge + `PM Strategy → PO Pipeline → Design → Code → Validate` chain inside card + 2 links (no star counts). New `components/FlagshipProject.tsx`
 - [x] ADD-2 "Writing" section auto-pulls 3 newest posts via `getAllPosts().slice(0,3)` (server component). New `components/WritingList.tsx`, matched to blog card tokens
 - [x] Build + static-HTML verification passed (0 stale strings, 0 metric ranges, 6 stages, flagship links, 3 recent posts, llms.txt rebuilt)
+- [x] Feedback (2026-07-13): Writing post cards + "Read all posts" open in a new tab (don't disrupt readers)
+- [x] Feedback (2026-07-13): typography consistency pass across homepage + blog (see D12) — 190-usage audit; converged eyebrow recipe, card-title weight, blog heading scale tokens, body step, body color, `.btn-secondary`, footer scale; unified headings → bold(700) + accent → sky(primary); kept category colors + prose + Outfit family
 - [ ] Author visual review in browser (design sign-off) — pending
 - [ ] Merge homepage-v2 → main + deploy (per author direction)
 - [ ] Post-deploy: `curl` grep for "Month, Year"/"Technical Product Manager" = 0 on live; re-check share preview

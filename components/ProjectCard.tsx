@@ -77,7 +77,7 @@ export default function ProjectCard({
 
       {/* Problem */}
       <div className="mb-4">
-        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
           Problem
         </span>
         <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
@@ -87,7 +87,7 @@ export default function ProjectCard({
 
       {/* Solution */}
       <div className="mb-4">
-        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
           Solution
         </span>
         <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
@@ -97,7 +97,7 @@ export default function ProjectCard({
 
       {/* Impact */}
       <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700">
-        <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">
           Impact
         </span>
         <ul className="mt-2 space-y-1.5">

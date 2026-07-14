@@ -80,7 +80,7 @@ export default function FlagshipProject({
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <div className="space-y-4">
               <div>
-                <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
                   Problem
                 </span>
                 <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
@@ -88,7 +88,7 @@ export default function FlagshipProject({
                 </p>
               </div>
               <div>
-                <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
                   Solution
                 </span>
                 <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 mt-1">
@@ -98,7 +98,7 @@ export default function FlagshipProject({
             </div>
 
             <div className="md:border-l md:border-slate-200 md:dark:border-slate-700 md:pl-8">
-              <span className="text-xs lg:text-sm font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">
                 What it demonstrates
               </span>
               <ul className="mt-2 space-y-1.5">
@@ -137,9 +137,7 @@ export default function FlagshipProject({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={
-                  link.primary
-                    ? "btn-primary justify-center"
-                    : "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-600 hover:border-primary-400 dark:hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300"
+                  link.primary ? "btn-primary justify-center" : "btn-secondary justify-center"
                 }
               >
                 {link.label}

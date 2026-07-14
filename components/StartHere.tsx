@@ -35,10 +35,10 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
   return (
     <section className="mb-14">
       {/* Section header — matches the blog's heading scale */}
-      <h2 className="text-[22px] md:text-[26px] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
+      <h2 className="text-2xl font-bold tracking-tight leading-tight text-slate-900 dark:text-slate-50">
         New here? Two ways in.
       </h2>
-      <p className="mt-2 max-w-2xl text-sm lg:text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+      <p className="mt-2 max-w-2xl text-sm lg:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
         Field notes from inside container-shipping product work — where operations,
         documentation, and software actually collide. Pick the door that fits you.
       </p>
@@ -54,10 +54,10 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
               className="flex flex-col rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 p-6 lg:p-7"
               style={{ boxShadow: "0 2px 16px rgba(100,100,140,0.08)" }}
             >
-              <h3 className="text-base lg:text-lg font-bold tracking-tight text-slate-900 dark:text-slate-50">
+              <h3 className="text-base lg:text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-50">
                 {path.heading}
               </h3>
-              <p className="mt-2 text-sm lg:text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+              <p className="mt-2 text-sm lg:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                 {path.intro}
               </p>
 
@@ -70,7 +70,7 @@ export default function StartHere({ posts }: { posts: PostMeta[] }) {
                     />
                     <Link
                       href={`/blog/${p.slug}`}
-                      className="text-sm lg:text-base font-medium text-slate-700 dark:text-slate-200 hover:text-violet-700 dark:hover:text-violet-400 transition-colors no-underline leading-snug"
+                      className="text-sm lg:text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors no-underline leading-snug"
                     >
                       {p.title}
                     </Link>

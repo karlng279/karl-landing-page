@@ -154,12 +154,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           )}
 
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-50 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight text-slate-900 dark:text-slate-50 mb-4">
             {post.title}
           </h1>
 
           {/* Meta */}
-          <div className="flex items-center gap-2 text-sm lg:text-base text-slate-400 dark:text-slate-500 mb-8">
+          <div className="flex items-center gap-2 text-xs lg:text-sm text-slate-400 dark:text-slate-500 mb-8">
             <span>{formatDate(post.date)}</span>
             <span>·</span>
             <span>{post.readTime} min read</span>
@@ -183,7 +183,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Post content */}
           <article
-            className="prose prose-slate dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-violet-600 dark:prose-a:text-violet-400 prose-strong:text-slate-800 dark:prose-strong:text-slate-200 max-w-none"
+            className="prose prose-slate dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-strong:text-slate-800 dark:prose-strong:text-slate-200 max-w-none"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
 
@@ -208,7 +208,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               Working on similar problems in shipping or logistics product?{" "}
               <Link
                 href="/#connect"
-                className="font-medium text-violet-600 dark:text-violet-400 hover:underline"
+                className="font-medium text-primary-600 dark:text-primary-400 hover:underline"
               >
                 Let&rsquo;s connect.
               </Link>

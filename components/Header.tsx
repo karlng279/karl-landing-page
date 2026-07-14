@@ -81,7 +81,7 @@ export default function Header() {
                 href={link.href}
                 className={`px-3.5 py-1.5 rounded-lg text-sm transition-all duration-150 ${
                   active
-                    ? "font-semibold text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/20"
+                    ? "font-semibold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
                     : "font-normal text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60"
                 }`}
               >

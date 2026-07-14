@@ -22,15 +22,17 @@ export default function WritingList({ posts }: { posts: PostMeta[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group block rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300"
           >
-            <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-slate-400 dark:text-slate-500 mb-2">
+            <p className="text-xs lg:text-sm text-slate-400 dark:text-slate-500 mb-2">
               {formatDate(post.date)} · {post.readTime} min read
             </p>
-            <h3 className="text-base font-bold text-slate-900 dark:text-slate-50 group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors mb-2 leading-snug">
+            <h3 className="text-base font-semibold text-slate-800 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 leading-snug">
               {post.title}
             </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+            <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 line-clamp-2">
               {post.excerpt}
             </p>
           </Link>
@@ -40,6 +42,8 @@ export default function WritingList({ posts }: { posts: PostMeta[] }) {
       <div className="mt-8 text-center">
         <Link
           href="/blog"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
         >
           Read all posts

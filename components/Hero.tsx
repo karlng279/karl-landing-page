@@ -115,10 +115,7 @@ export default function Hero() {
               </svg>
               View Case Studies
             </a>
-            <a
-              href="#connect"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-600 hover:border-primary-400 dark:hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300"
-            >
+            <a href="#connect" className="btn-secondary">
               <svg
                 className="w-5 h-5"
                 fill="none"
