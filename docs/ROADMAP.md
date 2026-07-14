@@ -30,7 +30,7 @@ Success criteria:
 ## Shipped
 - **2026-07-09** — M0 + M1 + crawler bugfix (blog was empty to non-JS crawlers).
 - **2026-07-12** — Blog restructure (spec `docs/specs/blog-restructure.md`): 3-category taxonomy, single-select filter, curated "Start Here" two-path module, honest read-times, peer CTA. Static (current stack).
-- **2026-07-13** — Homepage restructure (spec `docs/specs/homepage-restructure.md`): PO→PM reframe (global positioning, 6-stage "How I Work", flagship AI-Ready Product Workflow v2 card w/ pipeline chain), deleted dead "Open to Opportunities" markup, `📍 Boston, MA` hero pill, removed ghost cursor, demoted SME work to "Side Projects", single-figure metrics, new "Writing" section (auto-pulls 3 recent posts). Static (current stack).
+- **2026-07-13** — Homepage restructure (spec `docs/specs/homepage-restructure.md`): PO→PM reframe (global positioning, 6-stage "How I Work", flagship AI-Ready Product Workflow v2 card w/ pipeline chain), deleted dead "Open to Opportunities" markup, `📍 Boston, MA` hero pill, removed ghost cursor, demoted SME work to "Side Projects", single-figure metrics, new "Writing" section (auto-pulls 3 recent posts). Plus a typography-consistency pass unifying homepage ↔ blog (see DECISIONS D12): one eyebrow recipe, card-title weights, scale-token headings, headings → bold(700), accent → sky(primary), single Outfit family. Merged to main 2026-07-13. Static (current stack).
 - Next up: the backend phase (**M3** Vercel migration → M4 subscribe → M5 interaction).
 
 ## Recommended tech (confirm at execution)
