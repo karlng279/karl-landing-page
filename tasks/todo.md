@@ -68,8 +68,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Merged homepage-v2 → main (2026-07-13); branch deleted local + origin
 - [ ] Post-deploy: `curl` grep for "Month, Year"/"Technical Product Manager" = 0 on live; re-check share preview (manual)
 
-## M2b — subscribe placeholder (deferred to M4 when backend lands)
-- [ ] Add subscribe placeholder + CTA (wired for real in M4)
+## M2b — subscribe (static-doable; under brainstorming, deferred 2026-07-13)
+- [ ] Decide + build subscribe. Confirmed **no backend needed** — provider embed form on the current static/GitHub Pages stack (RSS-to-email off `public/rss.xml`). Options + open questions captured in [docs/specs/subscribe-static-options.md](../docs/specs/subscribe-static-options.md). Not a decision yet; do NOT log to DECISIONS/ROADMAP until Karl picks the approach.
 
 ## M3 — Vercel migration (foundation for backend)
 - [ ] Remove `output: 'export'` (and reconsider `images.unoptimized`) in `next.config.js`
